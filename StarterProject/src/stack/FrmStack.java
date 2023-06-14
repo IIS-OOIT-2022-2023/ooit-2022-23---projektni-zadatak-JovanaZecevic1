@@ -1,6 +1,7 @@
 package stack;
 
 import java.awt.EventQueue;
+import geometry.Circle;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,9 +17,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import geometry.Point;
+import java.awt.Color;
 
 public class FrmStack extends JFrame {
-	private DefaultListModel<String> dlm = new DefaultListModel();
+	private DefaultListModel<Circle> dlm = new DefaultListModel();
 	private JPanel contentPane;
 
 	/**
@@ -50,43 +53,68 @@ public class FrmStack extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
+		JPanel panelSouth = new JPanel();
+		contentPane.add(panelSouth, BorderLayout.SOUTH);
 		
-		JLabel lblCircle = new JLabel("Krugovi");
-		panel.add(lblCircle);
+		JList<Circle> listLst = new JList<>();
+		listLst.setBackground(new Color(255, 255, 255));
+		listLst.setForeground(new Color(0, 0, 0));
+		contentPane.add(listLst, BorderLayout.CENTER);
+		listLst.setModel(dlm);
 		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.SOUTH);
+		
 		
 		JButton btnAddCircle = new JButton("DODATI KRUG");
 		btnAddCircle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DlgStack dlg = new DlgStack();
 				dlg.setVisible(true);
-				if(dlg.isOk() == true)//Ako je korisnik potvrdio unos u okviru dijaloga
-				{
-					dlm.addElement(dlg.getTextAddX().getText() + " " +
-				                   dlg.getTextAddY().getText() + " " +
-				                   dlg.getTextRadius().getText());
+				if(dlg.isOk() == true)
+				{   try {
+					int x = Integer.parseInt(dlg.getTextAddX().getText());
+					int y = Integer.parseInt(dlg.getTextAddY().getText());
+					int radius = Integer.parseInt(dlg.getTextRadius().getText());
+					
+					Circle circle = new Circle(new Point(x,y), radius);
+					
+					dlm.add(0, circle);
+					}
+				 catch (NumberFormatException ex) {
+		                // Obrada izuzetka: unos nije moguće pretvoriti u broj
+		                JOptionPane.showMessageDialog(null, "Nevažeći unos broja.", "Greška", JOptionPane.ERROR_MESSAGE);
+				 }
 				}
-			}
+				}
 		});
-		panel_1.add(btnAddCircle);
+		panelSouth.add(btnAddCircle);
 		
 		JButton btnDelete = new JButton("OBRISATI");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Da li ste sigurni", "Potvrda", JOptionPane.QUESTION_MESSAGE);
-				
-				
+				try {
+				int result = JOptionPane.showConfirmDialog(null, "Da li ste sigurni", "Potvrda", JOptionPane.OK_CANCEL_OPTION);
+				if (result == JOptionPane.OK_OPTION) {
+			                Circle removedCircle = dlm.get(0); // Pretpostavka: Brisanje prve stavke
+			                dlm.removeElement(removedCircle);
+			               
+					 }
+				}
+				catch(Exception eks) {
+					JOptionPane.showInternalMessageDialog(null, "List is empty", "Information", JOptionPane.INFORMATION_MESSAGE );
+				}
 			}
+				
+				
+			
 		});
-		panel_1.add(btnDelete);
+		panelSouth.add(btnDelete);
 		
-		JList listLst = new JList();
-		contentPane.add(listLst, BorderLayout.EAST);
-		listLst.setModel(dlm);
+		JLabel lblTitle = new JLabel("New label");
+		contentPane.add(lblTitle, BorderLayout.NORTH);
+		
+		
+		
+	
 	}
 
 }

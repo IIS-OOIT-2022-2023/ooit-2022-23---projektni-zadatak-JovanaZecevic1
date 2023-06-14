@@ -14,6 +14,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
 
 public class DlgStack extends JDialog {
 	private boolean isOk;
@@ -45,6 +46,7 @@ public class DlgStack extends JDialog {
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
+		setModal(true);
 		{
 			JPanel panel = new JPanel();
 			GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -54,9 +56,19 @@ public class DlgStack extends JDialog {
 			gbc_panel.gridx = 0;
 			gbc_panel.gridy = 0;
 			getContentPane().add(panel, gbc_panel);
+			GridBagLayout gbl_panel = new GridBagLayout();
+			gbl_panel.columnWidths = new int[]{436, 0};
+			gbl_panel.rowHeights = new int[]{13, 0};
+			gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+			gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+			panel.setLayout(gbl_panel);
 			{
 				JLabel lblTitleDlg = new JLabel("Unesite poluprecnik i koordinate");
-				panel.add(lblTitleDlg);
+				GridBagConstraints gbc_lblTitleDlg = new GridBagConstraints();
+				gbc_lblTitleDlg.fill = GridBagConstraints.BOTH;
+				gbc_lblTitleDlg.gridx = 0;
+				gbc_lblTitleDlg.gridy = 0;
+				panel.add(lblTitleDlg, gbc_lblTitleDlg);
 			}
 		}
 		{
