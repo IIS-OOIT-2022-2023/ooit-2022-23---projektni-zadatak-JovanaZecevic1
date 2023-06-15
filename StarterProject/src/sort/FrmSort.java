@@ -21,6 +21,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.awt.event.ActionEvent;
 
 public class FrmSort extends JFrame {
@@ -71,6 +74,21 @@ public class FrmSort extends JFrame {
 		contentPane.add(panelEast, BorderLayout.EAST);
 		
 		JButton btnSort = new JButton("SORT");
+		btnSort.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Circle> listCircles = Collections.list(dlm.elements());
+                listCircles.sort(new Comparator<Circle>() {
+                	@Override
+                    public int compare(Circle c1, Circle c2) {
+                        return Double.compare(c1.getRadius() * c1.getRadius() * Math.PI, c2.getRadius() * c2.getRadius() * Math.PI);
+                    }
+                });
+                dlm.removeAllElements();
+                for (Circle circle : listCircles) {
+                    dlm.addElement(circle);
+                }
+			}
+		});
 		btnSort.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSort.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelEast.add(btnSort);
@@ -104,6 +122,7 @@ public class FrmSort extends JFrame {
 						}
 					
 					dlm.add(0, circle);
+					  
 					}
 				 catch (NumberFormatException ex) {
 		                // Obrada izuzetka: unos nije moguće pretvoriti u broj
