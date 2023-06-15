@@ -71,11 +71,23 @@ public class FrmStack extends JFrame {
 				dlg.setVisible(true);
 				if(dlg.isOk() == true)
 				{   try {
+					
+					if (dlg.getTextAddX().getText().isEmpty() || dlg.getTextAddY().getText().isEmpty() || dlg.getTextRadius().getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                        
+					}
 					int x = Integer.parseInt(dlg.getTextAddX().getText());
 					int y = Integer.parseInt(dlg.getTextAddY().getText());
 					int radius = Integer.parseInt(dlg.getTextRadius().getText());
 					
 					Circle circle = new Circle(new Point(x,y), radius);
+				
+				
+						if (circle.getRadius()<=0) {
+							JOptionPane.showMessageDialog(null, "Radius must be greater than zero!", "WARNING", JOptionPane.WARNING_MESSAGE);
+							return;
+						}
 					
 					dlm.add(0, circle);
 					}
@@ -92,7 +104,7 @@ public class FrmStack extends JFrame {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				int result = JOptionPane.showConfirmDialog(null, "Da li ste sigurni", "Potvrda", JOptionPane.OK_CANCEL_OPTION);
+				int   result = JOptionPane.showConfirmDialog(null, "Da li ste sigurni", "Potvrda", JOptionPane.OK_CANCEL_OPTION);
 				if (result == JOptionPane.OK_OPTION) {
 			                Circle removedCircle = dlm.get(0); // Pretpostavka: Brisanje prve stavke
 			                dlm.removeElement(removedCircle);
