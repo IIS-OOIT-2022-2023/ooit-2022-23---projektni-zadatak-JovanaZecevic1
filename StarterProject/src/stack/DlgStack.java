@@ -21,6 +21,7 @@ public class DlgStack extends JDialog {
 	private JTextField textAddX;
 	private JTextField textAddY;
 	private JTextField textRadius;
+	
 
 	/**
 	 * Launch the application.
@@ -187,5 +188,7 @@ public class DlgStack extends JDialog {
 	public JTextField getTextRadius() {
 		return textRadius;
 	}
+
+	
 
 }
