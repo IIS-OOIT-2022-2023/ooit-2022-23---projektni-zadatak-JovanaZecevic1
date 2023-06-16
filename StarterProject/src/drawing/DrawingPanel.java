@@ -29,8 +29,6 @@ it.next().moveBy(10, 0);
 public void paint(Graphics g) {
 super.paint(g);
 
-
-
 Iterator<Shape> it=shapes.iterator();
 while(it.hasNext()) {
 it.next().draw(g);

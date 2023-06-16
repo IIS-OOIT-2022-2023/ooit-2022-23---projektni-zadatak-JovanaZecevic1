@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Circle;
+import geometry.Shape;
+
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -132,6 +136,21 @@ public class DlgCircle extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	public void setCircle(Circle circle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean isCommited() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Shape getCircle() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

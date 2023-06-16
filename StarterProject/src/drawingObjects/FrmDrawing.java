@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import drawing.DrawingPanel;
+import geometry.Shape;
+
 import java.awt.BorderLayout;
 import javax.swing.JToolBar;
 import javax.swing.ButtonGroup;
@@ -55,8 +57,8 @@ public class FrmDrawing extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JToolBar toolBar = new JToolBar();
-		contentPane.add(toolBar, BorderLayout.NORTH);
+		JToolBar toolBarNorth = new JToolBar();
+		contentPane.add(toolBarNorth, BorderLayout.NORTH);
 		
 		
 		JToggleButton tglbtnPoint = new JToggleButton("POINT");
@@ -65,7 +67,7 @@ public class FrmDrawing extends JFrame {
 			}
 		});
 		buttonGroup.add(tglbtnPoint);
-		toolBar.add(tglbtnPoint);
+		toolBarNorth.add(tglbtnPoint);
 		
 		JToggleButton tglbtnLine = new JToggleButton("LINE");
 		tglbtnLine.addActionListener(new ActionListener() {
@@ -74,7 +76,7 @@ public class FrmDrawing extends JFrame {
 		});
 		buttonGroup.add(tglbtnLine);
 		tglbtnLine.setHorizontalAlignment(SwingConstants.RIGHT);
-		toolBar.add(tglbtnLine);
+		toolBarNorth.add(tglbtnLine);
 		
 		JToggleButton tglbtnRectangle = new JToggleButton("RECTANGLE");
 		tglbtnRectangle.addActionListener(new ActionListener() {
@@ -82,7 +84,7 @@ public class FrmDrawing extends JFrame {
 			}
 		});
 		buttonGroup.add(tglbtnRectangle);
-		toolBar.add(tglbtnRectangle);
+		toolBarNorth.add(tglbtnRectangle);
 		
 		JToggleButton tglbtnCircle = new JToggleButton("CIRCLE");
 		tglbtnCircle.addActionListener(new ActionListener() {
@@ -91,7 +93,7 @@ public class FrmDrawing extends JFrame {
 		});
 		buttonGroup.add(tglbtnCircle);
 		tglbtnCircle.setHorizontalAlignment(SwingConstants.RIGHT);
-		toolBar.add(tglbtnCircle);
+		toolBarNorth.add(tglbtnCircle);
 		
 		JToggleButton tglbtnDonut = new JToggleButton("DONUT");
 		tglbtnDonut.addActionListener(new ActionListener() {
@@ -100,7 +102,69 @@ public class FrmDrawing extends JFrame {
 		});
 		buttonGroup.add(tglbtnDonut);
 		tglbtnDonut.setHorizontalAlignment(SwingConstants.RIGHT);
-		toolBar.add(tglbtnDonut);
+		toolBarNorth.add(tglbtnDonut);
+		
+		JToolBar toolBarSouth = new JToolBar();
+		contentPane.add(toolBarSouth, BorderLayout.SOUTH);
+		
+		JToggleButton tglbtnSelect = new JToggleButton("SELECT");
+		tglbtnSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		buttonGroup.add(tglbtnSelect);
+		tglbtnSelect.setHorizontalAlignment(SwingConstants.RIGHT);
+		toolBarSouth.add(tglbtnSelect);
+		
+		JToggleButton tglbtnModify = new JToggleButton("MODIFY");
+		tglbtnModify.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		buttonGroup.add(tglbtnModify);
+		toolBarSouth.add(tglbtnModify);
+		
+		JToggleButton tglbtnDelete = new JToggleButton("DELETE");
+		tglbtnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		buttonGroup.add(tglbtnDelete);
+		toolBarSouth.add(tglbtnDelete);
 	}
+
+	public Shape getTglBtnSelect() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Shape getTglBtnPoint() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Shape getTglBtnLine() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Shape getTglBtnRectangle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Shape getTglBtnCircle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Shape getTglBtnDonut() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+	
 
 }

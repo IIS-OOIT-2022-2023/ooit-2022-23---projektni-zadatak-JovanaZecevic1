@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Donut;
+import geometry.Shape;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -154,6 +158,21 @@ public class DlgDonut extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	public void setDonut(Donut donut) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean isCommited() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Shape getDonut() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
