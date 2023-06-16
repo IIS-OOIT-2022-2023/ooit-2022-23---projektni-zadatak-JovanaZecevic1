@@ -16,8 +16,9 @@ import javax.swing.JTextField;
 public class DlgPoint extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textXCoord;
-	private JTextField textYCoord;
+	private JTextField textPointX;
+	private JTextField textPointY;
+	private boolean isOk;
 
 	/**
 	 * Launch the application.
@@ -59,41 +60,41 @@ public class DlgPoint extends JDialog {
 			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			{
-				JLabel lblXCoord = new JLabel("Enter x coordinate:");
-				GridBagConstraints gbc_lblXCoord = new GridBagConstraints();
-				gbc_lblXCoord.insets = new Insets(0, 0, 5, 5);
-				gbc_lblXCoord.anchor = GridBagConstraints.NORTHEAST;
-				gbc_lblXCoord.gridx = 1;
-				gbc_lblXCoord.gridy = 1;
-				panel.add(lblXCoord, gbc_lblXCoord);
+				JLabel lblPointY = new JLabel("Enter x coordinate:");
+				GridBagConstraints gbc_lblPointY = new GridBagConstraints();
+				gbc_lblPointY.insets = new Insets(0, 0, 5, 5);
+				gbc_lblPointY.anchor = GridBagConstraints.NORTHEAST;
+				gbc_lblPointY.gridx = 1;
+				gbc_lblPointY.gridy = 1;
+				panel.add(lblPointY, gbc_lblPointY);
 			}
 			{
-				textXCoord = new JTextField();
-				GridBagConstraints gbc_textXCoord = new GridBagConstraints();
-				gbc_textXCoord.anchor = GridBagConstraints.WEST;
-				gbc_textXCoord.insets = new Insets(0, 0, 5, 0);
-				gbc_textXCoord.gridx = 2;
-				gbc_textXCoord.gridy = 1;
-				panel.add(textXCoord, gbc_textXCoord);
-				textXCoord.setColumns(10);
+				textPointX = new JTextField();
+				GridBagConstraints gbc_textPointX = new GridBagConstraints();
+				gbc_textPointX.anchor = GridBagConstraints.WEST;
+				gbc_textPointX.insets = new Insets(0, 0, 5, 0);
+				gbc_textPointX.gridx = 2;
+				gbc_textPointX.gridy = 1;
+				panel.add(textPointX, gbc_textPointX);
+				textPointX.setColumns(10);
 			}
 			{
-				JLabel lblYCoord = new JLabel("Enter y coordinate:");
-				GridBagConstraints gbc_lblYCoord = new GridBagConstraints();
-				gbc_lblYCoord.anchor = GridBagConstraints.EAST;
-				gbc_lblYCoord.insets = new Insets(0, 0, 0, 5);
-				gbc_lblYCoord.gridx = 1;
-				gbc_lblYCoord.gridy = 2;
-				panel.add(lblYCoord, gbc_lblYCoord);
+				JLabel lblPointY = new JLabel("Enter y coordinate:");
+				GridBagConstraints gbc_lblPointY = new GridBagConstraints();
+				gbc_lblPointY.anchor = GridBagConstraints.EAST;
+				gbc_lblPointY.insets = new Insets(0, 0, 0, 5);
+				gbc_lblPointY.gridx = 1;
+				gbc_lblPointY.gridy = 2;
+				panel.add(lblPointY, gbc_lblPointY);
 			}
 			{
-				textYCoord = new JTextField();
-				GridBagConstraints gbc_textYCoord = new GridBagConstraints();
-				gbc_textYCoord.anchor = GridBagConstraints.WEST;
-				gbc_textYCoord.gridx = 2;
-				gbc_textYCoord.gridy = 2;
-				panel.add(textYCoord, gbc_textYCoord);
-				textYCoord.setColumns(10);
+				textPointY = new JTextField();
+				GridBagConstraints gbc_textPointY = new GridBagConstraints();
+				gbc_textPointY.anchor = GridBagConstraints.WEST;
+				gbc_textPointY.gridx = 2;
+				gbc_textPointY.gridy = 2;
+				panel.add(textPointY, gbc_textPointY);
+				textPointY.setColumns(10);
 			}
 		}
 		{
@@ -112,6 +113,30 @@ public class DlgPoint extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	public JTextField getTextXCoord() {
+		return textPointX;
+	}
+
+	public void setTextXCoord(JTextField textXCoord) {
+		this.textPointX = textXCoord;
+	}
+
+	public JTextField getTextYCoord() {
+		return textPointY;
+	}
+
+	public void setTextYCoord(JTextField textYCoord) {
+		this.textPointY = textYCoord;
+	}
+
+	public boolean isOk() {
+		return isOk;
+	}
+
+	public void setOk(boolean isOkay) {
+		this.isOk = isOkay;
 	}
 
 }

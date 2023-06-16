@@ -3,6 +3,7 @@ package drawingObjects;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -64,6 +65,13 @@ public class FrmDrawing extends JFrame {
 		JToggleButton tglbtnPoint = new JToggleButton("POINT");
 		tglbtnPoint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DlgPoint dlg = new DlgPoint();
+				dlg.setVisible(true);
+				if (dlg.isOk()== true) {
+					
+						
+						
+				}
 			}
 		});
 		buttonGroup.add(tglbtnPoint);
