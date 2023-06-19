@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Point;
+
 import javax.swing.JTextField;
 
 public class DlgPoint extends JDialog {
@@ -19,6 +21,8 @@ public class DlgPoint extends JDialog {
 	private JTextField textPointX;
 	private JTextField textPointY;
 	private boolean isOk;
+	private int x;
+	private int y;
 
 	/**
 	 * Launch the application.
@@ -137,6 +141,12 @@ public class DlgPoint extends JDialog {
 
 	public void setOk(boolean isOkay) {
 		this.isOk = isOkay;
+	}
+
+
+	public void setPoint(geometry.Point point) {
+		this.x = (int) point.getX();
+		this.y = (int) point.getY();
 	}
 
 }

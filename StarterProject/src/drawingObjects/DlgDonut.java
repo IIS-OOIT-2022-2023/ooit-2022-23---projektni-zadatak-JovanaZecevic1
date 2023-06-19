@@ -17,6 +17,8 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DlgDonut extends JDialog {
 
@@ -25,6 +27,11 @@ public class DlgDonut extends JDialog {
 	private JTextField textFieldYcenter;
 	private JTextField textFieldYDonut;
 	private JTextField textFieldInner;
+	private boolean isOk;
+	private int x;
+	private int y;
+	private int radius;
+	private int innerRadius;
 
 	/**
 	 * Launch the application.
@@ -148,12 +155,20 @@ public class DlgDonut extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -161,7 +176,10 @@ public class DlgDonut extends JDialog {
 	}
 
 	public void setDonut(Donut donut) {
-		// TODO Auto-generated method stub
+		int x = donut.getCenter().getX();
+		int y = donut.getCenter().getY();
+		int radius = donut.getRadius();	
+		int innerRadius = donut.getInnerRadius();
 		
 	}
 
@@ -173,6 +191,46 @@ public class DlgDonut extends JDialog {
 	public Shape getDonut() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public JTextField getTextFieldXcenter() {
+		return textFieldXcenter;
+	}
+
+	public void setTextFieldXcenter(JTextField textFieldXcenter) {
+		this.textFieldXcenter = textFieldXcenter;
+	}
+
+	public JTextField getTextFieldYcenter() {
+		return textFieldYcenter;
+	}
+
+	public void setTextFieldYcenter(JTextField textFieldYcenter) {
+		this.textFieldYcenter = textFieldYcenter;
+	}
+
+	public JTextField getTextFieldYDonut() {
+		return textFieldYDonut;
+	}
+
+	public void setTextFieldYDonut(JTextField textFieldYDonut) {
+		this.textFieldYDonut = textFieldYDonut;
+	}
+
+	public JTextField getTextFieldInner() {
+		return textFieldInner;
+	}
+
+	public void setTextFieldInner(JTextField textFieldInner) {
+		this.textFieldInner = textFieldInner;
+	}
+
+	public boolean isOk() {
+		return isOk;
+	}
+
+	public void setOk(boolean isOk) {
+		this.isOk = isOk;
 	}
 
 }

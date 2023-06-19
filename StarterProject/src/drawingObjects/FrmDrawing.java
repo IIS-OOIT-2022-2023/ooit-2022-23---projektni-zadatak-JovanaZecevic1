@@ -2,6 +2,7 @@ package drawingObjects;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -9,6 +10,11 @@ import javax.swing.border.EmptyBorder;
 
 import drawing.DrawingPanel;
 import geometry.Shape;
+import geometry.Circle;
+import geometry.Donut;
+import geometry.Line;
+import geometry.Point;
+import geometry.Rectangle;
 
 import java.awt.BorderLayout;
 import javax.swing.JToolBar;
@@ -23,16 +29,18 @@ public class FrmDrawing extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private PnlDrawing drawingPanel = new PnlDrawing();
+	private int isOk;
+	private JToggleButton tglBtnPoint = new JToggleButton("Point");
+	private JToggleButton tglBtnLine = new JToggleButton("Line");
+	private JToggleButton tglBtnCircle = new JToggleButton("Circle");
+	private JToggleButton tglBtnRect = new JToggleButton("Rectangle");
+	private JToggleButton tglBtnDonut = new JToggleButton("Donut");
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		PnlDrawing panel = new PnlDrawing();
-		frame.getContentPane().add(panel);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setVisible(true);
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,67 +58,86 @@ public class FrmDrawing extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmDrawing() {
+		 contentPane = new JPanel();
+		contentPane.add(drawingPanel, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JToolBar toolBarNorth = new JToolBar();
 		contentPane.add(toolBarNorth, BorderLayout.NORTH);
 		
-		
-		JToggleButton tglbtnPoint = new JToggleButton("POINT");
-		tglbtnPoint.addActionListener(new ActionListener() {
+		JToggleButton tglBtnPoint = new JToggleButton("Point");
+		tglBtnPoint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DlgPoint dlg = new DlgPoint();
+				
+			}
+		});
+	
+		buttonGroup.add(tglBtnPoint);
+		toolBarNorth.add(tglBtnPoint);
+		
+		JToggleButton tglBtnLine = new JToggleButton("Line");
+		tglBtnLine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		buttonGroup.add(tglBtnLine);
+		toolBarNorth.add(tglBtnLine);
+		
+		JToggleButton tglBtnCircle = new JToggleButton("Circle");
+		tglBtnCircle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		buttonGroup.add(tglBtnCircle);
+		toolBarNorth.add(tglBtnCircle);
+		
+		JToggleButton tglBtnRect = new JToggleButton("Rectangle");
+		tglBtnRect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DlgRectangle dlg = new DlgRectangle();
 				dlg.setVisible(true);
-				if (dlg.isOk()== true) {
-					
+				if(dlg.isOk() == true) {
+					try {
+						if(dlg.getTextFieldX().getText().isEmpty() || dlg.getTextFieldY().getText().isEmpty() || dlg.getTextFieldWidth().getText().isEmpty() || dlg.getTextFieldHeight().getText().isEmpty()) { 
+							JOptionPane.showMessageDialog(null, "All fields must be filled!!","Error", JOptionPane.ERROR_MESSAGE);
+							return;
+					}
+							int x = Integer.parseInt(dlg.getTextFieldX().getText());
+							int y = Integer.parseInt(dlg.getTextFieldY().getText());
+							int width = Integer.parseInt(dlg.getTextFieldWidth().getText());
+							int height = Integer.parseInt(dlg.getTextFieldHeight().getText());
+							
+							Rectangle rect = new Rectangle(new Point(x,y), width, height);
+							if(rect.getWidth()<=0 || rect.getHeight() <=0) {
+								JOptionPane.showMessageDialog(null, "Height and width must be greater than zero!", "Error", JOptionPane.ERROR_MESSAGE);
+							return;
+							}
+							
+							
 						
-						
+					}catch(NumberFormatException exc) {
+						JOptionPane.showInternalMessageDialog(null, "Please enter numbers only!", "Warning", JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			}
 		});
-		buttonGroup.add(tglbtnPoint);
-		toolBarNorth.add(tglbtnPoint);
+		buttonGroup.add(tglBtnRect);
+		toolBarNorth.add(tglBtnRect);
 		
-		JToggleButton tglbtnLine = new JToggleButton("LINE");
-		tglbtnLine.addActionListener(new ActionListener() {
+		JToggleButton tglBtnDonut = new JToggleButton("Donut");
+		tglBtnDonut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		buttonGroup.add(tglbtnLine);
-		tglbtnLine.setHorizontalAlignment(SwingConstants.RIGHT);
-		toolBarNorth.add(tglbtnLine);
-		
-		JToggleButton tglbtnRectangle = new JToggleButton("RECTANGLE");
-		tglbtnRectangle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		buttonGroup.add(tglbtnRectangle);
-		toolBarNorth.add(tglbtnRectangle);
-		
-		JToggleButton tglbtnCircle = new JToggleButton("CIRCLE");
-		tglbtnCircle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		buttonGroup.add(tglbtnCircle);
-		tglbtnCircle.setHorizontalAlignment(SwingConstants.RIGHT);
-		toolBarNorth.add(tglbtnCircle);
-		
-		JToggleButton tglbtnDonut = new JToggleButton("DONUT");
-		tglbtnDonut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		buttonGroup.add(tglbtnDonut);
-		tglbtnDonut.setHorizontalAlignment(SwingConstants.RIGHT);
-		toolBarNorth.add(tglbtnDonut);
+		buttonGroup.add(tglBtnDonut);
+		toolBarNorth.add(tglBtnDonut);
+
 		
 		JToolBar toolBarSouth = new JToolBar();
 		contentPane.add(toolBarSouth, BorderLayout.SOUTH);
@@ -140,36 +167,81 @@ public class FrmDrawing extends JFrame {
 		buttonGroup.add(tglbtnDelete);
 		toolBarSouth.add(tglbtnDelete);
 	}
-
+	protected void delete() {
+	    Shape selected = drawingPanel.getSelected();
+	    if (selected != null)
+	        drawingPanel.getShapes().remove(selected);
+	    drawingPanel.repaint();
+	}
+	protected void modify() {
+		Shape selected =  drawingPanel.getSelected();
+		if(selected != null) {
+			if(selected instanceof Point) {
+				Point point = (Point) selected;
+				DlgPoint dlg = new DlgPoint();
+				dlg.setPoint(point);
+				dlg.setModal(true);
+				dlg.setVisible(true);
+			}else if(selected instanceof Line) {
+				Line line = (Line) selected;
+				DlgLine dlg =new DlgLine();
+				dlg.setLine(line);
+				dlg.setModal(true);
+				dlg.setVisible(true);
+			}else if(selected instanceof Rectangle) {
+				Rectangle rectangle = (Rectangle) selected;
+				DlgRectangle dlg = new DlgRectangle();
+				dlg.setRectangle(rectangle);
+				dlg.setModal(true);
+			    dlg.setVisible(true);	
+			}else if(selected instanceof Circle) {
+				Circle circle = (Circle) selected;
+				DlgCircle dlg = new DlgCircle();
+				dlg.setCircle(circle);
+				dlg.setModal(true);
+				dlg.setVisible(true);
+			}else if(selected instanceof Donut) {
+				Donut donut = (Donut) selected;
+				DlgDonut dlg = new DlgDonut();
+				dlg.setDonut(donut);
+				dlg.setModal(true);
+				dlg.setVisible(true);
+			}
+		}
+		drawingPanel.repaint();
+	}
+	
 	public Shape getTglBtnSelect() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Shape getTglBtnPoint() {
+	public JToggleButton getTglBtnPoint() {
 		// TODO Auto-generated method stub
-		return null;
+		return tglBtnPoint;
 	}
 
-	public Shape getTglBtnLine() {
+	public JToggleButton getTglBtnLine() {
 		// TODO Auto-generated method stub
-		return null;
+		return tglBtnLine;
 	}
 
-	public Shape getTglBtnRectangle() {
+	public JToggleButton getTglBtnRectangle() {
 		// TODO Auto-generated method stub
-		return null;
+		return tglBtnRect;
 	}
 
-	public Shape getTglBtnCircle() {
+	public JToggleButton getTglBtnCircle() {
 		// TODO Auto-generated method stub
-		return null;
+		return tglBtnCircle;
 	}
 
-	public Shape getTglBtnDonut() {
+	public JToggleButton getTglBtnDonut() {
 		// TODO Auto-generated method stub
-		return null;
+		return tglBtnDonut;
 	}
+
+	
 
 	
 	

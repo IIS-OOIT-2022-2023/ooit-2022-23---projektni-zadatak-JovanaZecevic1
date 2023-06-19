@@ -90,6 +90,7 @@ public class FrmStack extends JFrame {
 						}
 					
 					dlm.add(0, circle);
+					
 					}
 				 catch (NumberFormatException ex) {
 		                // Obrada izuzetka: unos nije moguće pretvoriti u broj

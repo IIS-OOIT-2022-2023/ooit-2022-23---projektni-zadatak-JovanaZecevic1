@@ -7,11 +7,16 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Line;
+
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DlgLine extends JDialog {
 
@@ -20,6 +25,12 @@ public class DlgLine extends JDialog {
 	private JTextField textFieldY1;
 	private JTextField textFieldX2;
 	private JTextField textFieldY2;
+	private boolean isOk;
+	private int x1;
+	private int y1;
+	private int x2;
+	private int y2;
+	
 
 	/**
 	 * Launch the application.
@@ -142,16 +153,70 @@ public class DlgLine extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
 
-}
+	public void setLine(Line line) {
+		this.x1 = line.getStartPoint().getX();
+		this.y1 = line.getStartPoint().getY();
+		this.x2 = line.getEndPoint().getX();
+		this.y2 = line.getEndPoint().getY();
+	}
+	
+	public JTextField getTextFieldX1() {
+		return textFieldX1;
+	}
+
+	public void setTxtLineXFirst(JTextField textFieldX1) {
+		this.textFieldX1 = textFieldX1;
+	}
+
+	public JTextField getTxtLineYFirst() {
+		return textFieldY1;
+	}
+
+	public void setTxtLineYFirst(JTextField txtLineYFirst) {
+		this.textFieldY1 = textFieldY1;
+	}
+
+	public JTextField getTxtLineXSecond() {
+		return textFieldX2;
+	}
+
+	public void setTxtLineXSecond(JTextField textFieldX2) {
+		this.textFieldX2 = textFieldX2;
+	}
+
+	public JTextField getTxtLineYSecond() {
+		return textFieldY2;
+	}
+
+	public void setTxtLineYSecond(JTextField txtLineYSecond) {
+		this.textFieldY2 = textFieldY2;
+	}
+
+	public boolean isOk() {
+		return isOk;
+	}
+	
+		
+	}
+
+

@@ -64,7 +64,7 @@ public class PnlDrawing extends JPanel {
 	 else if (frame.getTglBtnRectangle().isSelected()) {
 		 DlgRectangle dlg = new DlgRectangle();
 		 dlg.setModal(true);
-		 dlg.SetRectangle (new Rectangle (new Point (e.getX(), e.getY()),-1,-1));
+		 dlg.setRectangle (new Rectangle (new Point (e.getX(), e.getY()),-1,-1));
 		dlg.setVisible(true);
 		if(!dlg.isCommited())
 			return;

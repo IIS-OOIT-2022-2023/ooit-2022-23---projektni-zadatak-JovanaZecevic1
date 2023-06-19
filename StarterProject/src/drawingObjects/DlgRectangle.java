@@ -1,6 +1,7 @@
 package drawingObjects;
 
 import java.awt.BorderLayout;
+import geometry.Point;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -16,14 +17,22 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DlgRectangle extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textFieldXLeft;
+	private JTextField textFieldX;
 	private JTextField textFieldY;
 	private JTextField textFieldWidth;
 	private JTextField textFieldHeight;
+	private boolean isOk;
+	private int x;
+	private int y;
+	private int width;
+	private int height;
+
 
 	/**
 	 * Launch the application.
@@ -74,14 +83,14 @@ public class DlgRectangle extends JDialog {
 				panel.add(lblXleft, gbc_lblXleft);
 			}
 			{
-				textFieldXLeft = new JTextField();
-				GridBagConstraints gbc_textFieldXLeft = new GridBagConstraints();
-				gbc_textFieldXLeft.insets = new Insets(0, 0, 5, 0);
-				gbc_textFieldXLeft.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textFieldXLeft.gridx = 2;
-				gbc_textFieldXLeft.gridy = 1;
-				panel.add(textFieldXLeft, gbc_textFieldXLeft);
-				textFieldXLeft.setColumns(10);
+				textFieldX = new JTextField();
+				GridBagConstraints gbc_textFieldX = new GridBagConstraints();
+				gbc_textFieldX.insets = new Insets(0, 0, 5, 0);
+				gbc_textFieldX.fill = GridBagConstraints.HORIZONTAL;
+				gbc_textFieldX.gridx = 2;
+				gbc_textFieldX.gridy = 1;
+				panel.add(textFieldX, gbc_textFieldX);
+				textFieldX.setColumns(10);
 			}
 			{
 				JLabel lblYLeft = new JLabel("Enter y coordinate:");
@@ -146,22 +155,28 @@ public class DlgRectangle extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
 
-	public void SetRectangle(Rectangle rectangle) {
-		
-		
-	}
+
+
 
 	public boolean isCommited() {
 		// TODO Auto-generated method stub
@@ -172,5 +187,60 @@ public class DlgRectangle extends JDialog {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public JTextField getTextFieldX() {
+		return textFieldX;
+	}
+
+	public void setTextFieldX(JTextField textFieldX) {
+		this.textFieldX = textFieldX;
+	}
+
+	public JTextField getTextFieldY() {
+		return textFieldY;
+	}
+
+	public void setTextFieldY(JTextField textFieldY) {
+		this.textFieldY = textFieldY;
+	}
+
+	public JTextField getTextFieldWidth() {
+		return textFieldWidth;
+	}
+
+	public void setTextFieldWidth(JTextField textFieldWidth) {
+		this.textFieldWidth = textFieldWidth;
+	}
+
+	public JTextField getTextFieldHeight() {
+		return textFieldHeight;
+	}
+
+	public void setTextFieldHeight(JTextField textFieldHeight) {
+		this.textFieldHeight = textFieldHeight;
+	}
+
+	public boolean isOk() {
+		return isOk;
+	}
+
+	public void setOkay(boolean isOk) {
+		this.isOk = isOk;
+	}
+
+	
+
+	public void setRectangle(Rectangle rectangle) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stubthis.x= rectangle.getUpperLeftPoint().getX();
+	    this.y = rectangle.getUpperLeftPoint().getY();
+	    this.width = rectangle.getWidth();
+	    this.height = rectangle.getHeight();
+		
+	}
+
+	
+
+	
 
 }

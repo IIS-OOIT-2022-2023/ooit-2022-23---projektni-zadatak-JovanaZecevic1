@@ -16,6 +16,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DlgCircle extends JDialog {
 
@@ -23,6 +25,11 @@ public class DlgCircle extends JDialog {
 	private JTextField textFieldXCenter;
 	private JTextField textFieldYCenter;
 	private JTextField textFieldRadius;
+	private boolean isOkay;
+	private int x;
+	private int y;
+	private int radius;
+
 
 	/**
 	 * Launch the application.
@@ -126,12 +133,20 @@ public class DlgCircle extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -139,8 +154,9 @@ public class DlgCircle extends JDialog {
 	}
 
 	public void setCircle(Circle circle) {
-		// TODO Auto-generated method stub
-		
+		this.x = circle.getCenter().getX();
+		this.y = circle.getCenter().getY();
+		this.radius = circle.getRadius();
 	}
 
 	public boolean isCommited() {
@@ -148,9 +164,47 @@ public class DlgCircle extends JDialog {
 		return false;
 	}
 
+
+
+	public JTextField getTextFieldXCenter() {
+		return textFieldXCenter;
+	}
+
+	public void setTextFieldXCenter(JTextField textFieldXCenter) {
+		this.textFieldXCenter = textFieldXCenter;
+	}
+
+	public JTextField getTextFieldYCenter() {
+		return textFieldYCenter;
+	}
+
+	public void setTextFieldYCenter(JTextField textFieldYCenter) {
+		this.textFieldYCenter = textFieldYCenter;
+	}
+
+	public JTextField getTextFieldRadius() {
+		return textFieldRadius;
+	}
+
+	public void setTextFieldRadius(JTextField textFieldRadius) {
+		this.textFieldRadius = textFieldRadius;
+	}
+
+	public boolean isOkay() {
+		return isOkay;
+	}
+
+	public void setOkay(boolean isOkay) {
+		this.isOkay = isOkay;
+	}
+
 	public Shape getCircle() {
+		DlgCircle dlg = new DlgCircle();
 		// TODO Auto-generated method stub
 		return null;
+
 	}
+
+	
 
 }
