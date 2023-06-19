@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import geometry.Circle;
+import geometry.Point;
 import geometry.Shape;
 
 import javax.swing.JLabel;
@@ -25,7 +26,7 @@ public class DlgCircle extends JDialog {
 	private JTextField textFieldXCenter;
 	private JTextField textFieldYCenter;
 	private JTextField textFieldRadius;
-	private boolean isOkay;
+	private boolean isOk;
 	private int x;
 	private int y;
 	private int radius;
@@ -135,6 +136,8 @@ public class DlgCircle extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						isOk=true;
+						setVisible(false);
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -145,6 +148,7 @@ public class DlgCircle extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -190,19 +194,23 @@ public class DlgCircle extends JDialog {
 		this.textFieldRadius = textFieldRadius;
 	}
 
-	public boolean isOkay() {
-		return isOkay;
+	public boolean isOk() {
+		return isOk;
 	}
 
-	public void setOkay(boolean isOkay) {
-		this.isOkay = isOkay;
+	public void setOk(boolean isOk) {
+		this.isOk = isOk;
 	}
 
 	public Shape getCircle() {
 		DlgCircle dlg = new DlgCircle();
 		// TODO Auto-generated method stub
-		return null;
-
+		int x = Integer.parseInt(dlg.getTextFieldXCenter().getText());
+		int y = Integer.parseInt(dlg.getTextFieldYCenter().getText());
+		int radius =Integer.parseInt(dlg.getTextFieldRadius().getText());
+		
+		Circle circle = new Circle(new Point(x,y),  radius);
+		return circle;
 	}
 
 	

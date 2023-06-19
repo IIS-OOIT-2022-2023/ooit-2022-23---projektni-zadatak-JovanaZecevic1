@@ -157,6 +157,10 @@ public class DlgRectangle extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						isOk = true;
+						setVisible(false);
+							
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -167,6 +171,7 @@ public class DlgRectangle extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -184,8 +189,16 @@ public class DlgRectangle extends JDialog {
 	}
 
 	public Shape getRectangle() {
-		// TODO Auto-generated method stub
-		return null;
+		DlgRectangle dlg = new DlgRectangle();
+		
+		int x = Integer.parseInt(dlg.getTextFieldX().getText());
+		int y = Integer.parseInt(dlg.getTextFieldY().getText());
+		int width = Integer.parseInt(dlg.getTextFieldWidth().getText());
+		int height = Integer.parseInt(dlg.getTextFieldHeight().getText());
+		
+		Rectangle rectangle = new Rectangle(new Point(x,y), width,  height);
+		return rectangle;
+		
 	}
 
 	public JTextField getTextFieldX() {
@@ -231,8 +244,6 @@ public class DlgRectangle extends JDialog {
 	
 
 	public void setRectangle(Rectangle rectangle) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stubthis.x= rectangle.getUpperLeftPoint().getX();
 	    this.y = rectangle.getUpperLeftPoint().getY();
 	    this.width = rectangle.getWidth();
 	    this.height = rectangle.getHeight();

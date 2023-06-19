@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import geometry.Donut;
+import geometry.Point;
 import geometry.Shape;
 
 import java.awt.GridBagLayout;
@@ -25,7 +26,7 @@ public class DlgDonut extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textFieldXcenter;
 	private JTextField textFieldYcenter;
-	private JTextField textFieldYDonut;
+	private JTextField textFieldRadius;
 	private JTextField textFieldInner;
 	private boolean isOk;
 	private int x;
@@ -121,14 +122,14 @@ public class DlgDonut extends JDialog {
 				panel.add(lblRadiusDonut, gbc_lblRadiusDonut);
 			}
 			{
-				textFieldYDonut = new JTextField();
-				GridBagConstraints gbc_textFieldYDonut = new GridBagConstraints();
-				gbc_textFieldYDonut.insets = new Insets(0, 0, 5, 0);
-				gbc_textFieldYDonut.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textFieldYDonut.gridx = 2;
-				gbc_textFieldYDonut.gridy = 3;
-				panel.add(textFieldYDonut, gbc_textFieldYDonut);
-				textFieldYDonut.setColumns(10);
+				textFieldRadius = new JTextField();
+				GridBagConstraints gbc_textFieldRadius = new GridBagConstraints();
+				gbc_textFieldRadius.insets = new Insets(0, 0, 5, 0);
+				gbc_textFieldRadius.fill = GridBagConstraints.HORIZONTAL;
+				gbc_textFieldRadius.gridx = 2;
+				gbc_textFieldRadius.gridy = 3;
+				panel.add(textFieldRadius, gbc_textFieldRadius);
+				textFieldRadius.setColumns(10);
 			}
 			{
 				JLabel lblInner = new JLabel("Enter inner radius:");
@@ -157,6 +158,8 @@ public class DlgDonut extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						isOk=true;
+						setVisible(false);
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -167,6 +170,7 @@ public class DlgDonut extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -189,9 +193,16 @@ public class DlgDonut extends JDialog {
 	}
 
 	public Shape getDonut() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+			DlgDonut dlg  = new DlgDonut();
+			int x = Integer.parseInt(dlg. getTextFieldXcenter().getText());
+			int y = Integer.parseInt(dlg. getTextFieldYcenter().getText());
+			int radius =Integer.parseInt(dlg.getTextFieldRadius().getText());
+			int innerRadius = Integer.parseInt(dlg.getTextFieldInner().getText());
+			
+			Donut donut = new Donut (new Point(x,y), radius, innerRadius);
+			return donut;
+		}
+	
 
 	public JTextField getTextFieldXcenter() {
 		return textFieldXcenter;
@@ -209,12 +220,12 @@ public class DlgDonut extends JDialog {
 		this.textFieldYcenter = textFieldYcenter;
 	}
 
-	public JTextField getTextFieldYDonut() {
-		return textFieldYDonut;
+	public JTextField getTextFieldRadius() {
+		return textFieldRadius;
 	}
 
-	public void setTextFieldYDonut(JTextField textFieldYDonut) {
-		this.textFieldYDonut = textFieldYDonut;
+	public void setTextFieldRadius(JTextField textFieldRadius) {
+		this.textFieldRadius = textFieldRadius;
 	}
 
 	public JTextField getTextFieldInner() {

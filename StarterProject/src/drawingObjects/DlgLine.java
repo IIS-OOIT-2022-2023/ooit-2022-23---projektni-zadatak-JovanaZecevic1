@@ -155,6 +155,8 @@ public class DlgLine extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						isOk=true;
+						setVisible(false);
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -165,6 +167,8 @@ public class DlgLine extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						setVisible(false);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

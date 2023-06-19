@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import drawing.DrawingPanel;
 import geometry.Shape;
+import stack.DlgStack;
 import geometry.Circle;
 import geometry.Donut;
 import geometry.Line;
@@ -58,7 +59,7 @@ public class FrmDrawing extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmDrawing() {
-		 contentPane = new JPanel();
+		contentPane = new JPanel();
 		contentPane.add(drawingPanel, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -92,8 +93,40 @@ public class FrmDrawing extends JFrame {
 		JToggleButton tglBtnCircle = new JToggleButton("Circle");
 		tglBtnCircle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
+						DlgCircle dlg = new DlgCircle();
+						dlg.setVisible(true);
+						if(dlg.isOk() == true)
+						{   try {
+							
+							if (dlg.getTextFieldXCenter().getText().isEmpty() || dlg.getTextFieldYCenter().getText().isEmpty() || dlg.getTextFieldRadius().getText().isEmpty()) {
+		                        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+		                        return;
+		                        
+							}
+							int x = Integer.parseInt(dlg.getTextFieldXCenter().getText());
+							int y = Integer.parseInt(dlg.getTextFieldYCenter().getText());
+							int radius = Integer.parseInt(dlg.getTextFieldRadius().getText());
+							
+							Circle circle = new Circle(new Point(x,y), radius);
+						
+						
+								if (circle.getRadius()<=0) {
+									JOptionPane.showMessageDialog(null, "Radius must be greater than zero!", "WARNING", JOptionPane.WARNING_MESSAGE);
+									return;
+								}
+							
+							
+							
+							}
+						 catch (NumberFormatException ex) {
+				                // Obrada izuzetka: unos nije moguće pretvoriti u broj
+				                JOptionPane.showMessageDialog(null, "Nevažeći unos broja.", "Greška", JOptionPane.ERROR_MESSAGE);
+						 }
+						}
+						}
+				});
+				
+				
 		buttonGroup.add(tglBtnCircle);
 		toolBarNorth.add(tglBtnCircle);
 		
@@ -133,7 +166,39 @@ public class FrmDrawing extends JFrame {
 		JToggleButton tglBtnDonut = new JToggleButton("Donut");
 		tglBtnDonut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
+				DlgDonut dlg = new DlgDonut();
+				dlg.setVisible(true);
+				if(dlg.isOk() == true)
+				{   try {
+					
+					if (dlg.getTextFieldXcenter().getText().isEmpty() || dlg.getTextFieldYcenter().getText().isEmpty() || dlg.getTextFieldRadius().getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                        
+					}
+					int x = Integer.parseInt(dlg.getTextFieldXcenter().getText());
+					int y = Integer.parseInt(dlg.getTextFieldYcenter().getText());
+					int radius = Integer.parseInt(dlg.getTextFieldRadius().getText());
+					int innerRadius = Integer.parseInt(dlg.getTextFieldInner().getText());
+					
+					
+					Donut donut= new Donut(new Point(x,y), radius, innerRadius);
+				
+				
+						if (donut.getRadius()<=0) {
+							JOptionPane.showMessageDialog(null, "Radius must be greater than zero!", "WARNING", JOptionPane.WARNING_MESSAGE);
+							return;
+						}
+					
+					
+					
+					}
+				 catch (NumberFormatException ex) {
+		                // Obrada izuzetka: unos nije moguće pretvoriti u broj
+		                JOptionPane.showMessageDialog(null, "Nevažeći unos broja.", "Greška", JOptionPane.ERROR_MESSAGE);
+				 }
+				}
+				}
 		});
 		buttonGroup.add(tglBtnDonut);
 		toolBarNorth.add(tglBtnDonut);
