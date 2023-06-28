@@ -179,8 +179,8 @@ public class DlgLine extends JDialog {
 						try {
 							
 							int x = Integer.parseInt(textFieldX1.getText());
-							int y = Integer.parseInt(textFieldX2.getText());
-							int x2 = Integer.parseInt(textFieldY1.getText());
+							int y = Integer.parseInt(textFieldY1.getText());
+							int x2 = Integer.parseInt(textFieldX2.getText());
 							int y2 = Integer.parseInt(textFieldY2.getText());
 							Point startPoint = new Point(x,y);
 							Point endPoint = new Point(x2,y2);
@@ -218,34 +218,6 @@ public class DlgLine extends JDialog {
 	
 	public JTextField getTextFieldX1() {
 		return textFieldX1;
-	}
-
-	public void setTxtLineXFirst(JTextField textFieldX1) {
-		this.textFieldX1 = textFieldX1;
-	}
-
-	public JTextField getTxtLineYFirst() {
-		return textFieldY1;
-	}
-
-	public void setTxtLineYFirst(JTextField txtLineYFirst) {
-		this.textFieldY1 = textFieldY1;
-	}
-
-	public JTextField getTxtLineXSecond() {
-		return textFieldX2;
-	}
-
-	public void setTxtLineXSecond(JTextField textFieldX2) {
-		this.textFieldX2 = textFieldX2;
-	}
-
-	public JTextField getTxtLineYSecond() {
-		return textFieldY2;
-	}
-
-	public void setTxtLineYSecond(JTextField txtLineYSecond) {
-		this.textFieldY2 = textFieldY2;
 	}
 
 	public boolean isOk() {

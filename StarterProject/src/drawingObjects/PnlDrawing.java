@@ -98,8 +98,8 @@ public class PnlDrawing extends JPanel {
 						Line line = (Line)shape;
 						dlg.getTextFieldX1().setText(String.valueOf(line.getStartPoint().getX()));
 						dlg.getTextFieldY1().setText(String.valueOf(line.getStartPoint().getY()));
-						dlg.getTxtLineXSecond().setText(String.valueOf(line.getEndPoint().getX()));
-						dlg.getTxtLineYSecond().setText(String.valueOf(line.getEndPoint().getY()));
+						dlg.getTextFieldX2().setText(String.valueOf(line.getEndPoint().getX()));
+						dlg.getTextFieldY2().setText(String.valueOf(line.getEndPoint().getY()));
 						dlg.setVisible(true);
 						if(dlg.isOk()) {
 							line.getStartPoint().setX(Integer.parseInt(dlg.getTextFieldX1().getText()));
