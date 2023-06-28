@@ -18,26 +18,32 @@ import geometry.Point;
 import geometry.Rectangle;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JToolBar;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JToggleButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
 
 public class FrmDrawing extends JFrame {
 
-	private JPanel contentPane;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private PnlDrawing drawingPanel = new PnlDrawing();
-	private int isOk;
-	private JToggleButton tglBtnPoint = new JToggleButton("Point");
-	private JToggleButton tglBtnLine = new JToggleButton("Line");
-	private JToggleButton tglBtnCircle = new JToggleButton("Circle");
-	private JToggleButton tglBtnRect = new JToggleButton("Rectangle");
-	private JToggleButton tglBtnDonut = new JToggleButton("Donut");
+	private JPanel contentPane_1;
+	private final ButtonGroup buttonGroup1 = new ButtonGroup();
+	private final ButtonGroup buttonGroup2 = new ButtonGroup();
+	private PnlDrawing panelDrawing;
+	private Point startPoint;
 
+
+	
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -59,253 +65,160 @@ public class FrmDrawing extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmDrawing() {
-		contentPane = new JPanel();
-		contentPane.add(drawingPanel, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane_1 = new JPanel();
+		contentPane_1.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setTitle("Zecevic Jovana IT41/2022");
 		
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		panelDrawing = new PnlDrawing();
+		panelDrawing.setBackground(new Color(255, 255, 255));
+		
+		setContentPane(contentPane_1);
+		contentPane_1.setLayout(new BorderLayout(0, 0));
 		
 		JToolBar toolBarNorth = new JToolBar();
-		contentPane.add(toolBarNorth, BorderLayout.NORTH);
+		contentPane_1.add(toolBarNorth, BorderLayout.NORTH);
 		
 		JToggleButton tglBtnPoint = new JToggleButton("Point");
-		tglBtnPoint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-	
-		buttonGroup.add(tglBtnPoint);
+		buttonGroup1.add(tglBtnPoint);
 		toolBarNorth.add(tglBtnPoint);
 		
 		JToggleButton tglBtnLine = new JToggleButton("Line");
-		tglBtnLine.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		buttonGroup.add(tglBtnLine);
+		buttonGroup1.add(tglBtnLine);
 		toolBarNorth.add(tglBtnLine);
 		
-		JToggleButton tglBtnCircle = new JToggleButton("Circle");
-		tglBtnCircle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-						DlgCircle dlg = new DlgCircle();
-						dlg.setVisible(true);
-						if(dlg.isOk() == true)
-						{   try {
-							
-							if (dlg.getTextFieldXCenter().getText().isEmpty() || dlg.getTextFieldYCenter().getText().isEmpty() || dlg.getTextFieldRadius().getText().isEmpty()) {
-		                        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
-		                        return;
-		                        
-							}
-							int x = Integer.parseInt(dlg.getTextFieldXCenter().getText());
-							int y = Integer.parseInt(dlg.getTextFieldYCenter().getText());
-							int radius = Integer.parseInt(dlg.getTextFieldRadius().getText());
-							
-							Circle circle = new Circle(new Point(x,y), radius);
-						
-						
-								if (circle.getRadius()<=0) {
-									JOptionPane.showMessageDialog(null, "Radius must be greater than zero!", "WARNING", JOptionPane.WARNING_MESSAGE);
-									return;
-								}
-							
-							
-							
-							}
-						 catch (NumberFormatException ex) {
-				                // Obrada izuzetka: unos nije moguće pretvoriti u broj
-				                JOptionPane.showMessageDialog(null, "Nevažeći unos broja.", "Greška", JOptionPane.ERROR_MESSAGE);
-						 }
-						}
-						}
-				});
-				
-				
-		buttonGroup.add(tglBtnCircle);
+		JToggleButton tglBtnCircle = new JToggleButton("Circle");	
+		buttonGroup1.add(tglBtnCircle);
 		toolBarNorth.add(tglBtnCircle);
 		
 		JToggleButton tglBtnRect = new JToggleButton("Rectangle");
-		tglBtnRect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DlgRectangle dlg = new DlgRectangle();
-				dlg.setVisible(true);
-				if(dlg.isOk() == true) {
-					try {
-						if(dlg.getTextFieldX().getText().isEmpty() || dlg.getTextFieldY().getText().isEmpty() || dlg.getTextFieldWidth().getText().isEmpty() || dlg.getTextFieldHeight().getText().isEmpty()) { 
-							JOptionPane.showMessageDialog(null, "All fields must be filled!!","Error", JOptionPane.ERROR_MESSAGE);
-							return;
-					}
-							int x = Integer.parseInt(dlg.getTextFieldX().getText());
-							int y = Integer.parseInt(dlg.getTextFieldY().getText());
-							int width = Integer.parseInt(dlg.getTextFieldWidth().getText());
-							int height = Integer.parseInt(dlg.getTextFieldHeight().getText());
-							
-							Rectangle rect = new Rectangle(new Point(x,y), width, height);
-							if(rect.getWidth()<=0 || rect.getHeight() <=0) {
-								JOptionPane.showMessageDialog(null, "Height and width must be greater than zero!", "Error", JOptionPane.ERROR_MESSAGE);
-							return;
-							}
-							
-							
-						
-					}catch(NumberFormatException exc) {
-						JOptionPane.showInternalMessageDialog(null, "Please enter numbers only!", "Warning", JOptionPane.WARNING_MESSAGE);
-					}
-				}
-			}
-		});
-		buttonGroup.add(tglBtnRect);
+		buttonGroup1.add(tglBtnRect);
 		toolBarNorth.add(tglBtnRect);
 		
 		JToggleButton tglBtnDonut = new JToggleButton("Donut");
-		tglBtnDonut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DlgDonut dlg = new DlgDonut();
-				dlg.setVisible(true);
-				if(dlg.isOk() == true)
-				{   try {
-					
-					if (dlg.getTextFieldXcenter().getText().isEmpty() || dlg.getTextFieldYcenter().getText().isEmpty() || dlg.getTextFieldRadius().getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                        
-					}
-					int x = Integer.parseInt(dlg.getTextFieldXcenter().getText());
-					int y = Integer.parseInt(dlg.getTextFieldYcenter().getText());
-					int radius = Integer.parseInt(dlg.getTextFieldRadius().getText());
-					int innerRadius = Integer.parseInt(dlg.getTextFieldInner().getText());
-					
-					
-					Donut donut= new Donut(new Point(x,y), radius, innerRadius);
-				
-				
-						if (donut.getRadius()<=0) {
-							JOptionPane.showMessageDialog(null, "Radius must be greater than zero!", "WARNING", JOptionPane.WARNING_MESSAGE);
-							return;
-						}
-					
-					
-					
-					}
-				 catch (NumberFormatException ex) {
-		                // Obrada izuzetka: unos nije moguće pretvoriti u broj
-		                JOptionPane.showMessageDialog(null, "Nevažeći unos broja.", "Greška", JOptionPane.ERROR_MESSAGE);
-				 }
-				}
-				}
-		});
-		buttonGroup.add(tglBtnDonut);
+		buttonGroup1.add(tglBtnDonut);
 		toolBarNorth.add(tglBtnDonut);
 
 		
 		JToolBar toolBarSouth = new JToolBar();
-		contentPane.add(toolBarSouth, BorderLayout.SOUTH);
+		contentPane_1.add(toolBarSouth, BorderLayout.SOUTH);
 		
-		JToggleButton tglbtnSelect = new JToggleButton("SELECT");
-		tglbtnSelect.addActionListener(new ActionListener() {
+		JToggleButton tglbtnDraw = new JToggleButton("DRAW");
+		toolBarSouth.add(tglbtnDraw);
+		buttonGroup2.add(tglbtnDraw);
+		
+		JToggleButton tglbtnSelected = new JToggleButton("SELECT");
+		tglbtnSelected.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				buttonGroup1.clearSelection();
 			}
 		});
-		buttonGroup.add(tglbtnSelect);
-		tglbtnSelect.setHorizontalAlignment(SwingConstants.RIGHT);
-		toolBarSouth.add(tglbtnSelect);
+		toolBarSouth.add(tglbtnSelected);
+		buttonGroup2.add(tglbtnSelected);
 		
-		JToggleButton tglbtnModify = new JToggleButton("MODIFY");
-		tglbtnModify.addActionListener(new ActionListener() {
+		JButton btnModify = new JButton("MODIFY");
+		btnModify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelDrawing.modify();
 			}
 		});
-		buttonGroup.add(tglbtnModify);
-		toolBarSouth.add(tglbtnModify);
+		toolBarSouth.add(btnModify);
 		
-		JToggleButton tglbtnDelete = new JToggleButton("DELETE");
-		tglbtnDelete.addActionListener(new ActionListener() {
+		JButton btnDelete = new JButton("DELETE");
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelDrawing.delete();
 			}
 		});
-		buttonGroup.add(tglbtnDelete);
-		toolBarSouth.add(tglbtnDelete);
-	}
-	protected void delete() {
-	    Shape selected = drawingPanel.getSelected();
-	    if (selected != null)
-	        drawingPanel.getShapes().remove(selected);
-	    drawingPanel.repaint();
-	}
-	protected void modify() {
-		Shape selected =  drawingPanel.getSelected();
-		if(selected != null) {
-			if(selected instanceof Point) {
-				Point point = (Point) selected;
-				DlgPoint dlg = new DlgPoint();
-				dlg.setPoint(point);
-				dlg.setModal(true);
-				dlg.setVisible(true);
-			}else if(selected instanceof Line) {
-				Line line = (Line) selected;
-				DlgLine dlg =new DlgLine();
-				dlg.setLine(line);
-				dlg.setModal(true);
-				dlg.setVisible(true);
-			}else if(selected instanceof Rectangle) {
-				Rectangle rectangle = (Rectangle) selected;
-				DlgRectangle dlg = new DlgRectangle();
-				dlg.setRectangle(rectangle);
-				dlg.setModal(true);
-			    dlg.setVisible(true);	
-			}else if(selected instanceof Circle) {
-				Circle circle = (Circle) selected;
-				DlgCircle dlg = new DlgCircle();
-				dlg.setCircle(circle);
-				dlg.setModal(true);
-				dlg.setVisible(true);
-			}else if(selected instanceof Donut) {
-				Donut donut = (Donut) selected;
-				DlgDonut dlg = new DlgDonut();
-				dlg.setDonut(donut);
-				dlg.setModal(true);
-				dlg.setVisible(true);
+		toolBarSouth.add(btnDelete);
+		
+		
+		panelDrawing.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int x = e.getX();
+				int y = e.getY();
+				if(tglbtnDraw.isSelected()) {
+					if(tglBtnPoint.isSelected()) {
+						DlgPoint dlg = new DlgPoint();
+						dlg.getTextPointX().setText(String.valueOf(x));
+		                dlg.getTextPointY().setText(String.valueOf(y));
+		                dlg.setVisible(true);
+		                if(dlg.isOk()==true) {
+		                	Point point = dlg.getPoint();
+		                	Color color = dlg.getColor();
+		                    panelDrawing.addShape(point, color);
+		                }
+					}
+					if(tglBtnLine.isSelected()) {
+						if(startPoint == null) {
+							startPoint = new Point(x,y);
+						}
+						else {
+							DlgLine dlg = new DlgLine();
+							dlg.getTextFieldX1().setText(String.valueOf(startPoint.getX()));
+							dlg.getTextFieldY1().setText(String.valueOf(startPoint.getY()));
+							dlg.getTextFieldX2().setText(String.valueOf(x));
+							dlg.getTextFieldY2().setText(String.valueOf(y));
+							dlg.setVisible(true);
+							if(dlg.isOk()==true) {
+								Line line = dlg.getLine();
+								Color color = dlg.getColor();
+								panelDrawing.addShape(line, color);
+							}
+							startPoint = null;
+						}
+					}if(tglBtnRect.isSelected()) {
+						DlgRectangle dlg = new DlgRectangle();
+						dlg.getTextFieldX().setText(String.valueOf(x));
+						dlg.getTextFieldY().setText(String.valueOf(y));
+						dlg.setVisible(true);
+						if(dlg.isOk()==true) {
+							Rectangle rectangle = dlg.getRectangle();
+							Color outlineColor = dlg.getOutlineColor();
+							Color innerColor = dlg.getInnerColor();
+							panelDrawing.addShape(rectangle, innerColor,outlineColor);
+						}
+					}
+					if(tglBtnCircle.isSelected()) {
+						DlgCircle dlg = new DlgCircle();
+						dlg.getTextFieldXCenter().setText(String.valueOf(x));
+						dlg.getTextFieldYCenter().setText(String.valueOf(y));
+						dlg.setVisible(true);
+						if(dlg.isOk()) {
+							Circle circle = dlg.getCircle();
+							Color innerColor = dlg.getInnerColor();
+							Color outlineColor = dlg.getOutlineColor();
+							panelDrawing.addShape(circle, innerColor, outlineColor);
+							
+						}
+					}
+					if(tglBtnDonut.isSelected()) {
+						DlgDonut dlg = new DlgDonut();
+						dlg.getTextFieldXcenter().setText(String.valueOf(x));
+		                dlg.getTextFieldYcenter().setText(String.valueOf(y));
+		                dlg.setVisible(true);
+		                if(dlg.isOk()) {
+		                	Donut donut = dlg.getDonut();
+		                	Color innerColor = dlg.getInnerColor();
+		                	Color outlineColor = dlg.getOutlineColor();
+		                	panelDrawing.addShape(donut, innerColor, outlineColor);
+		                	}
+					}
+				}
+				if(tglbtnSelected.isSelected()) {
+					panelDrawing.selected(x,y);
+				}
 			}
-		}
-		drawingPanel.repaint();
+		});
+		contentPane_1.add(panelDrawing, BorderLayout.CENTER);
 	}
 	
-	public Shape getTglBtnSelect() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public JToggleButton getTglBtnPoint() {
-		// TODO Auto-generated method stub
-		return tglBtnPoint;
-	}
-
-	public JToggleButton getTglBtnLine() {
-		// TODO Auto-generated method stub
-		return tglBtnLine;
-	}
-
-	public JToggleButton getTglBtnRectangle() {
-		// TODO Auto-generated method stub
-		return tglBtnRect;
-	}
-
-	public JToggleButton getTglBtnCircle() {
-		// TODO Auto-generated method stub
-		return tglBtnCircle;
-	}
-
-	public JToggleButton getTglBtnDonut() {
-		// TODO Auto-generated method stub
-		return tglBtnDonut;
-	}
-
+	
+	
+	
+	
 	
 
 	

@@ -1,8 +1,11 @@
 package drawingObjects;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import geometry.Point;
 import java.awt.FlowLayout;
+import javax.swing.JColorChooser;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,6 +16,8 @@ import geometry.Rectangle;
 import geometry.Shape;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -28,10 +33,9 @@ public class DlgRectangle extends JDialog {
 	private JTextField textFieldWidth;
 	private JTextField textFieldHeight;
 	private boolean isOk;
-	private int x;
-	private int y;
-	private int width;
-	private int height;
+	private Color outlineColor;
+	private Color innerColor;
+	private Rectangle rectangle;
 
 
 	/**
@@ -51,6 +55,9 @@ public class DlgRectangle extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgRectangle() {
+		setModal(true);
+		outlineColor = Color.black;
+		innerColor = Color.white;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,9 +76,9 @@ public class DlgRectangle extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
 			gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
-			gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+			gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 			gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			{
 				JLabel lblXleft = new JLabel("Enter x coordinate:");
@@ -112,7 +119,7 @@ public class DlgRectangle extends JDialog {
 				textFieldY.setColumns(10);
 			}
 			{
-				JLabel lblWidth = new JLabel("Enteer width:");
+				JLabel lblWidth = new JLabel("Enter width:");
 				GridBagConstraints gbc_lblWidth = new GridBagConstraints();
 				gbc_lblWidth.anchor = GridBagConstraints.EAST;
 				gbc_lblWidth.insets = new Insets(0, 0, 5, 5);
@@ -134,7 +141,7 @@ public class DlgRectangle extends JDialog {
 				JLabel lblHeight = new JLabel("Enter height:");
 				GridBagConstraints gbc_lblHeight = new GridBagConstraints();
 				gbc_lblHeight.anchor = GridBagConstraints.EAST;
-				gbc_lblHeight.insets = new Insets(0, 0, 0, 5);
+				gbc_lblHeight.insets = new Insets(0, 0, 5, 5);
 				gbc_lblHeight.gridx = 1;
 				gbc_lblHeight.gridy = 4;
 				panel.add(lblHeight, gbc_lblHeight);
@@ -142,11 +149,32 @@ public class DlgRectangle extends JDialog {
 			{
 				textFieldHeight = new JTextField();
 				GridBagConstraints gbc_textFieldHeight = new GridBagConstraints();
+				gbc_textFieldHeight.insets = new Insets(0, 0, 5, 0);
 				gbc_textFieldHeight.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textFieldHeight.gridx = 2;
 				gbc_textFieldHeight.gridy = 4;
 				panel.add(textFieldHeight, gbc_textFieldHeight);
 				textFieldHeight.setColumns(10);
+			}
+			{
+				JButton btnNewButton = new JButton("Choose inner color");
+				GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+				gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+				gbc_btnNewButton.gridx = 1;
+				gbc_btnNewButton.gridy = 5;
+				panel.add(btnNewButton, gbc_btnNewButton);
+				innerColor = JColorChooser.showDialog(null,
+                        "Choose a color", Color.WHITE);
+			}
+			{
+				JButton btnNewButton_1 = new JButton("Choose outline color");
+				GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+				gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+				gbc_btnNewButton_1.gridx = 1;
+				gbc_btnNewButton_1.gridy = 6;
+				panel.add(btnNewButton_1, gbc_btnNewButton_1);
+				outlineColor = JColorChooser.showDialog(null,
+                        "Choose a color", Color.BLACK);
 			}
 		}
 		{
@@ -157,8 +185,23 @@ public class DlgRectangle extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						isOk = true;
-						setVisible(false);
+						try {
+							int x = Integer.parseInt(textFieldX.getText());
+							int y = Integer.parseInt(textFieldY.getText());
+							int width = Integer.parseInt(textFieldWidth.getText());
+							int height = Integer.parseInt(textFieldHeight.getText());
+							rectangle = new Rectangle(new Point(x,y), width, height);
+							setVisible(false);
+							isOk=true;
+							
+						}
+						catch(NumberFormatException exc) {
+							JOptionPane.showInternalMessageDialog(null, "Please enter numbers only!", "Warning", JOptionPane.WARNING_MESSAGE);
+						}
+						catch(IllegalArgumentException ex)
+						{
+							JOptionPane.showMessageDialog(DlgRectangle.this, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 							
 						
 					}
@@ -182,24 +225,6 @@ public class DlgRectangle extends JDialog {
 
 
 
-
-	public boolean isCommited() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public Shape getRectangle() {
-		DlgRectangle dlg = new DlgRectangle();
-		
-		int x = Integer.parseInt(dlg.getTextFieldX().getText());
-		int y = Integer.parseInt(dlg.getTextFieldY().getText());
-		int width = Integer.parseInt(dlg.getTextFieldWidth().getText());
-		int height = Integer.parseInt(dlg.getTextFieldHeight().getText());
-		
-		Rectangle rectangle = new Rectangle(new Point(x,y), width,  height);
-		return rectangle;
-		
-	}
 
 	public JTextField getTextFieldX() {
 		return textFieldX;
@@ -241,14 +266,32 @@ public class DlgRectangle extends JDialog {
 		this.isOk = isOk;
 	}
 
-	
+	public Color getOutlineColor() {
+		return outlineColor;
+	}
+
+	public void setOutlineColor(Color outlineColor) {
+		this.outlineColor = outlineColor;
+	}
+
+	public Color getInnerColor() {
+		return innerColor;
+	}
+
+	public void setInnerColor(Color innerColor) {
+		this.innerColor = innerColor;
+	}
+
+	public Rectangle getRectangle() {
+		return rectangle;
+	}
 
 	public void setRectangle(Rectangle rectangle) {
-	    this.y = rectangle.getUpperLeftPoint().getY();
-	    this.width = rectangle.getWidth();
-	    this.height = rectangle.getHeight();
-		
+		this.rectangle = rectangle;
 	}
+
+
+	
 
 	
 

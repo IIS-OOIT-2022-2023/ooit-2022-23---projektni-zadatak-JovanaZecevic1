@@ -12,8 +12,8 @@ public class Circle extends Shape{
 		System.out.println("Poziv konstruktora Circle");
 	}
 	public Circle(Point center, int radius) {
-		this.radius = radius;
 		this.center = center;
+		setRadius(radius);
 	}
 	
 	public Circle(Point center, int radius, boolean selected) {
@@ -31,11 +31,11 @@ public class Circle extends Shape{
 	}
 
 	
-	public void setRadius(int radius) throws Exception {
+	public void setRadius(int radius) {
 		if(radius > 0) {
 			this.radius = radius;
 		}else {
-			throw new Exception("Radius mora da bude pozitivan");
+			throw new IllegalArgumentException("Radius must be positive!");
 		}
 	}
 
@@ -54,7 +54,11 @@ public class Circle extends Shape{
 	}
 
 	public void draw(Graphics g) {
+		g.setColor(getOutlineColor());
 		g.drawOval(this.center.getX() - this.radius, this.center.getY() - this.radius, 2* this.radius, 2*this.radius);
+		g.setColor(getInnerColor());
+		g.fillOval(center.getX() - radius, center.getY() - radius, 2*radius, 2*radius);
+		
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
 			g.drawRect(center.getX() - 2, center.getY() - 2, 4, 4);

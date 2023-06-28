@@ -1,9 +1,11 @@
 package drawingObjects;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,6 +16,7 @@ import geometry.Shape;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -29,10 +32,9 @@ public class DlgDonut extends JDialog {
 	private JTextField textFieldRadius;
 	private JTextField textFieldInner;
 	private boolean isOk;
-	private int x;
-	private int y;
-	private int radius;
-	private int innerRadius;
+	private Color innerColor;
+	private Color outlineColor;
+	private Donut donut;
 
 	/**
 	 * Launch the application.
@@ -51,6 +53,9 @@ public class DlgDonut extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgDonut() {
+		setModal(true);
+		innerColor = Color.WHITE;
+		outlineColor = Color.black;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,9 +75,9 @@ public class DlgDonut extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
 			gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
-			gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+			gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 			gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			{
 				JLabel lblXcenter = new JLabel("Enter x coordinate of center:");
@@ -135,7 +140,7 @@ public class DlgDonut extends JDialog {
 				JLabel lblInner = new JLabel("Enter inner radius:");
 				GridBagConstraints gbc_lblInner = new GridBagConstraints();
 				gbc_lblInner.anchor = GridBagConstraints.EAST;
-				gbc_lblInner.insets = new Insets(0, 0, 0, 5);
+				gbc_lblInner.insets = new Insets(0, 0, 5, 5);
 				gbc_lblInner.gridx = 1;
 				gbc_lblInner.gridy = 4;
 				panel.add(lblInner, gbc_lblInner);
@@ -143,11 +148,40 @@ public class DlgDonut extends JDialog {
 			{
 				textFieldInner = new JTextField();
 				GridBagConstraints gbc_textFieldInner = new GridBagConstraints();
+				gbc_textFieldInner.insets = new Insets(0, 0, 5, 0);
 				gbc_textFieldInner.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textFieldInner.gridx = 2;
 				gbc_textFieldInner.gridy = 4;
 				panel.add(textFieldInner, gbc_textFieldInner);
 				textFieldInner.setColumns(10);
+			}
+			{
+				JButton btnNewButton = new JButton("Choose outline color");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						 outlineColor = JColorChooser.showDialog(null,
+		                        "Choose a color", Color.BLACK);
+					}
+				});
+				GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+				gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+				gbc_btnNewButton.gridx = 1;
+				gbc_btnNewButton.gridy = 5;
+				panel.add(btnNewButton, gbc_btnNewButton);
+			}
+			{
+				JButton btnNewButton_1 = new JButton("Choose inner color");
+				btnNewButton_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						innerColor = JColorChooser.showDialog(null,
+		                        "Choose a color", Color.WHITE);
+					}
+				});
+				GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+				gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+				gbc_btnNewButton_1.gridx = 1;
+				gbc_btnNewButton_1.gridy = 6;
+				panel.add(btnNewButton_1, gbc_btnNewButton_1);
 			}
 		}
 		{
@@ -158,8 +192,21 @@ public class DlgDonut extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						isOk=true;
-						setVisible(false);
+						try {
+						     int x = Integer.parseInt(textFieldXcenter.getText());
+						     int y = Integer.parseInt(textFieldYcenter.getText());
+						     int radius = Integer.parseInt(textFieldRadius.getText());
+						     int innerRadius = Integer.parseInt(textFieldInner.getText());
+						     donut = new Donut(new Point(x,y), radius, innerRadius);
+						     setVisible(false);
+						     isOk=true;
+						}
+						catch(NumberFormatException exc){
+							JOptionPane.showMessageDialog(null, "Enter number only!", "Error", JOptionPane.ERROR_MESSAGE);
+						}catch(IllegalArgumentException ex)
+						{
+							JOptionPane.showMessageDialog(DlgDonut.this, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -179,29 +226,9 @@ public class DlgDonut extends JDialog {
 		}
 	}
 
-	public void setDonut(Donut donut) {
-		int x = donut.getCenter().getX();
-		int y = donut.getCenter().getY();
-		int radius = donut.getRadius();	
-		int innerRadius = donut.getInnerRadius();
-		
-	}
 
-	public boolean isCommited() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	public Shape getDonut() {
-			DlgDonut dlg  = new DlgDonut();
-			int x = Integer.parseInt(dlg. getTextFieldXcenter().getText());
-			int y = Integer.parseInt(dlg. getTextFieldYcenter().getText());
-			int radius =Integer.parseInt(dlg.getTextFieldRadius().getText());
-			int innerRadius = Integer.parseInt(dlg.getTextFieldInner().getText());
-			
-			Donut donut = new Donut (new Point(x,y), radius, innerRadius);
-			return donut;
-		}
+	
 	
 
 	public JTextField getTextFieldXcenter() {
@@ -242,6 +269,30 @@ public class DlgDonut extends JDialog {
 
 	public void setOk(boolean isOk) {
 		this.isOk = isOk;
+	}
+
+	public Color getInnerColor() {
+		return innerColor;
+	}
+
+	public void setInnerColor(Color innerColor) {
+		this.innerColor = innerColor;
+	}
+
+	public Color getOutlineColor() {
+		return outlineColor;
+	}
+
+	public void setOutlineColor(Color outlineColor) {
+		this.outlineColor = outlineColor;
+	}
+
+	public void setDonut(Donut donut) {
+		this.donut = donut;
+	}
+
+	public Donut getDonut() {
+		return donut;
 	}
 
 }

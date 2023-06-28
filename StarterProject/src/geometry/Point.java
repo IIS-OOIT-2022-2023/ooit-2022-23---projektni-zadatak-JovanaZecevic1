@@ -23,8 +23,8 @@ public class Point extends Shape {
 
 	
 	public Point(int x, int y) {
-		this.x = x;
-		this.y = y;
+		setX(x);
+		setY(y);
 		
 	}
 	
@@ -47,8 +47,12 @@ public class Point extends Shape {
 		return x;
 	}
 	
-	public void setY(int y) {
-		this.y = y;
+	public void setY(int yCoord) {
+		if(yCoord < 0) {
+			System.out.println("Value must be positive");
+		}else {
+			this.y = yCoord;
+		}
 	}
 	
 	public int getY() {
@@ -81,6 +85,7 @@ public class Point extends Shape {
 	}
 	
 	public void draw(Graphics g) {
+		g.setColor(getOutlineColor());
 		g.drawLine(this.x, this.y - 2, this.x, this.y + 2);
 		g.drawLine(this.x - 2, this.y, this.x + 2, this.y);
 		if(isSelected()) {

@@ -13,8 +13,8 @@ public class Rectangle extends Shape {
 	}
 	public Rectangle(Point upperLeftPoint, int height, int width)  {
 		this.upperLeftPoint = upperLeftPoint;
-		this.height = height;
-		this.width = width;
+		setWidth(width);
+		setHeight(height);
 	}
 	
 	public Rectangle(Point upperLeftPoint, int height, int width, boolean selected) {
@@ -37,13 +37,21 @@ public class Rectangle extends Shape {
 		return this.height;
 	}
 	public void setHeight(int height) {
-		this.height = height;
+		if(height<=0) {
+			throw new IllegalArgumentException("Heigth must be greater than zero!");
+		}
+		this.height=height;
+		
 	}
 	public int getWidth() {
 		return this.width;
 	}
 	public void setWidth(int width) {
-		this.width = width;
+		if (width<=0) {
+			throw new IllegalArgumentException("Height must be greater than zero!");
+		}
+		else 
+			this.width=width;
 	}
 	
 	public boolean contains(int x, int y) {
@@ -55,6 +63,10 @@ public class Rectangle extends Shape {
 	}
 
 	public void draw(Graphics g) {
+		g.setColor(getInnerColor());
+		g.fillRect(this.upperLeftPoint.getX(), this.upperLeftPoint.getY(), this.width, this.height);
+		g.setColor(getOutlineColor());
+		g.drawRect(upperLeftPoint.getX(), upperLeftPoint.getY(), width, height);
 		g.drawRect(this.upperLeftPoint.getX(), this.upperLeftPoint.getY(), this.width, this.height);
 		if(isSelected()) {
 			g.setColor(Color.blue);

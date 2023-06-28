@@ -55,6 +55,7 @@ public class Line extends Shape{
 	}
 
 	public void draw(Graphics g) {
+		g.setColor(getOutlineColor());
 		g.drawLine(this.startPoint.getX(), this.startPoint.getY(), this.endPoint.getX(), this.endPoint.getY());
 		if(isSelected()) {
 			g.setColor(Color.BLUE);

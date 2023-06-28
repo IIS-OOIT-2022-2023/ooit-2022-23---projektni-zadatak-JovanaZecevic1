@@ -13,7 +13,11 @@ public class Donut extends Circle {
 	/*super upucuje poziv roditeljskoj (nadklasi) klasi*/
 	public Donut(Point center, int radius, int innerRadius) {
 		super(center, radius);
-		this.innerRadius = innerRadius;
+		if(innerRadius>radius || innerRadius<0) {
+			throw new IllegalArgumentException("Inner radius must be greater than zero and less than radius");
+		}
+		else
+			this.innerRadius=innerRadius;
 	}
 	public Donut(Point center, int radius, int innerRadius, boolean selected) {
 		this(center, radius, innerRadius);
@@ -38,6 +42,9 @@ public class Donut extends Circle {
 	
 	public void draw(Graphics g) {
 		super.draw(g);
+		g.setColor(Color.WHITE);
+		g.fillOval(getCenter().getX() - innerRadius, getCenter().getY() - innerRadius, 2 * innerRadius, 2 *innerRadius);
+		g.setColor(getOutlineColor());
 		g.drawOval(this.getCenter().getX() - this.innerRadius, this.getCenter().getY() - this.innerRadius, 2* this.innerRadius, 2*this.innerRadius);
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
