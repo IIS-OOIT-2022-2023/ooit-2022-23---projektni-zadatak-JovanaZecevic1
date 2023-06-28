@@ -158,23 +158,33 @@ public class DlgRectangle extends JDialog {
 			}
 			{
 				JButton btnNewButton = new JButton("Choose inner color");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						innerColor = JColorChooser.showDialog(null,
+		                        "Choose a color", Color.WHITE);
+					}
+				});
 				GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 				gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 				gbc_btnNewButton.gridx = 1;
 				gbc_btnNewButton.gridy = 5;
 				panel.add(btnNewButton, gbc_btnNewButton);
-				innerColor = JColorChooser.showDialog(null,
-                        "Choose a color", Color.WHITE);
+				
 			}
 			{
 				JButton btnNewButton_1 = new JButton("Choose outline color");
+				btnNewButton_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						outlineColor = JColorChooser.showDialog(null,
+		                        "Choose a color", Color.BLACK);
+					}
+				});
 				GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 				gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
 				gbc_btnNewButton_1.gridx = 1;
 				gbc_btnNewButton_1.gridy = 6;
 				panel.add(btnNewButton_1, gbc_btnNewButton_1);
-				outlineColor = JColorChooser.showDialog(null,
-                        "Choose a color", Color.BLACK);
+				
 			}
 		}
 		{
