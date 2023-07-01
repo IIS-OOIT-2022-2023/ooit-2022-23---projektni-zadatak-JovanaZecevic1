@@ -30,6 +30,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
+import java.awt.Font;
 
 public class FrmDrawing extends JFrame {
 
@@ -68,6 +69,7 @@ public class FrmDrawing extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane_1 = new JPanel();
+		contentPane_1.setBackground(new Color(64, 0, 64));
 		contentPane_1.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setTitle("Zecevic Jovana IT41/2022");
 		
@@ -78,37 +80,58 @@ public class FrmDrawing extends JFrame {
 		contentPane_1.setLayout(new BorderLayout(0, 0));
 		
 		JToolBar toolBarNorth = new JToolBar();
+		toolBarNorth.setForeground(new Color(255, 255, 255));
+		toolBarNorth.setBackground(new Color(64, 0, 64));
 		contentPane_1.add(toolBarNorth, BorderLayout.NORTH);
 		
 		JToggleButton tglBtnPoint = new JToggleButton("Point");
+		tglBtnPoint.setBackground(new Color(255, 255, 255));
+		tglBtnPoint.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnPoint);
 		toolBarNorth.add(tglBtnPoint);
 		
 		JToggleButton tglBtnLine = new JToggleButton("Line");
+		tglBtnLine.setBackground(new Color(255, 255, 255));
+		tglBtnLine.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnLine);
 		toolBarNorth.add(tglBtnLine);
 		
 		JToggleButton tglBtnCircle = new JToggleButton("Circle");	
+		tglBtnCircle.setBackground(new Color(255, 255, 255));
+		tglBtnCircle.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnCircle);
 		toolBarNorth.add(tglBtnCircle);
 		
 		JToggleButton tglBtnRect = new JToggleButton("Rectangle");
+		tglBtnRect.setBackground(new Color(255, 255, 255));
+		tglBtnRect.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnRect);
 		toolBarNorth.add(tglBtnRect);
 		
 		JToggleButton tglBtnDonut = new JToggleButton("Donut");
+		tglBtnDonut.setBackground(new Color(255, 255, 255));
+		tglBtnDonut.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnDonut);
 		toolBarNorth.add(tglBtnDonut);
 
 		
 		JToolBar toolBarSouth = new JToolBar();
+		toolBarSouth.setForeground(new Color(255, 255, 255));
+		toolBarSouth.setBackground(new Color(64, 0, 64));
+		toolBarSouth.setFont(new Font("Georgia", Font.BOLD, 15));
 		contentPane_1.add(toolBarSouth, BorderLayout.SOUTH);
 		
-		JToggleButton tglbtnDraw = new JToggleButton("DRAW");
+		JToggleButton tglbtnDraw = new JToggleButton("Draw");
+		tglbtnDraw.setBackground(new Color(0, 98, 112));
+		tglbtnDraw.setForeground(new Color(255, 255, 255));
+		tglbtnDraw.setFont(new Font("Georgia", Font.BOLD, 16));
 		toolBarSouth.add(tglbtnDraw);
 		buttonGroup2.add(tglbtnDraw);
 		
-		JToggleButton tglbtnSelected = new JToggleButton("SELECT");
+		JToggleButton tglbtnSelected = new JToggleButton("Select");
+		tglbtnSelected.setForeground(new Color(20, 98, 112));
+		tglbtnSelected.setBackground(new Color(255, 255, 255));
+		tglbtnSelected.setFont(new Font("Georgia", Font.BOLD, 15));
 		tglbtnSelected.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonGroup1.clearSelection();
@@ -117,7 +140,10 @@ public class FrmDrawing extends JFrame {
 		toolBarSouth.add(tglbtnSelected);
 		buttonGroup2.add(tglbtnSelected);
 		
-		JButton btnModify = new JButton("MODIFY");
+		JButton btnModify = new JButton("Modify");
+		btnModify.setForeground(new Color(255, 255, 255));
+		btnModify.setBackground(new Color(0, 98, 112));
+		btnModify.setFont(new Font("Georgia", Font.BOLD, 15));
 		btnModify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelDrawing.modify();
@@ -125,7 +151,10 @@ public class FrmDrawing extends JFrame {
 		});
 		toolBarSouth.add(btnModify);
 		
-		JButton btnDelete = new JButton("DELETE");
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setForeground(new Color(0, 98, 112));
+		btnDelete.setBackground(new Color(255,255,255));
+		btnDelete.setFont(new Font("Georgia", Font.BOLD, 15));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelDrawing.delete();

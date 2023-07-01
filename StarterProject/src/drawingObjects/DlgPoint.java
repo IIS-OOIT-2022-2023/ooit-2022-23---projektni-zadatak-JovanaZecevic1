@@ -20,6 +20,7 @@ import geometry.Point;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class DlgPoint extends JDialog {
 
@@ -57,70 +58,89 @@ public class DlgPoint extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(64, 0, 64));
 			contentPanel.add(panel, BorderLayout.NORTH);
 			{
-				JLabel lblPoint = new JLabel("Enter coordinates:");
+				JLabel lblPoint = new JLabel("Enter Point Coordinates");
+				lblPoint.setForeground(new Color(255, 255, 255));
+				lblPoint.setFont(new Font("Georgia", Font.BOLD, 17));
 				panel.add(lblPoint);
 			}
 		}
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(226,226,226));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
-			gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
-			gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-			gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+			gbl_panel.columnWidths = new int[]{0, 0, 249, 56, 0, 0, 114, 0};
+			gbl_panel.rowHeights = new int[]{23, 32, 35, 20, 30, 0};
+			gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			{
-				JLabel lblPointY = new JLabel("Enter x coordinate:");
-				GridBagConstraints gbc_lblPointY = new GridBagConstraints();
-				gbc_lblPointY.insets = new Insets(0, 0, 5, 5);
-				gbc_lblPointY.anchor = GridBagConstraints.NORTHEAST;
-				gbc_lblPointY.gridx = 1;
-				gbc_lblPointY.gridy = 1;
-				panel.add(lblPointY, gbc_lblPointY);
+				JLabel lblPointX = new JLabel("Enter the x-coordinate");
+				lblPointX.setFont(new Font("Georgia", Font.BOLD, 15));
+				lblPointX.setForeground(new Color(64, 0, 64));
+				GridBagConstraints gbc_lblPointX = new GridBagConstraints();
+				gbc_lblPointX.anchor = GridBagConstraints.EAST;
+				gbc_lblPointX.insets = new Insets(0, 0, 5, 5);
+				gbc_lblPointX.gridx = 2;
+				gbc_lblPointX.gridy = 1;
+				panel.add(lblPointX, gbc_lblPointX);
 			}
 			{
 				textPointX = new JTextField();
+				textPointX.setFont(new Font("Georgia", Font.BOLD, 15));
+				textPointX.setBackground(new Color(255, 255, 255));
+				textPointX.setForeground(new Color(0, 0, 0));
 				GridBagConstraints gbc_textPointX = new GridBagConstraints();
-				gbc_textPointX.anchor = GridBagConstraints.WEST;
-				gbc_textPointX.insets = new Insets(0, 0, 5, 0);
-				gbc_textPointX.gridx = 2;
+				gbc_textPointX.fill = GridBagConstraints.BOTH;
+				gbc_textPointX.insets = new Insets(0, 0, 5, 5);
+				gbc_textPointX.gridx = 3;
 				gbc_textPointX.gridy = 1;
 				panel.add(textPointX, gbc_textPointX);
 				textPointX.setColumns(10);
 			}
 			{
-				JLabel lblPointY = new JLabel("Enter y coordinate:");
+				JLabel lblPointY = new JLabel("Enter the y-coordinate");
+				lblPointY.setForeground(new Color(0, 0, 0));
+				lblPointY.setFont(new Font("Georgia", Font.BOLD, 15));
 				GridBagConstraints gbc_lblPointY = new GridBagConstraints();
 				gbc_lblPointY.anchor = GridBagConstraints.EAST;
 				gbc_lblPointY.insets = new Insets(0, 0, 5, 5);
-				gbc_lblPointY.gridx = 1;
+				gbc_lblPointY.gridx = 2;
 				gbc_lblPointY.gridy = 2;
 				panel.add(lblPointY, gbc_lblPointY);
 			}
 			{
-				textPointY = new JTextField();
-				GridBagConstraints gbc_textPointY = new GridBagConstraints();
-				gbc_textPointY.insets = new Insets(0, 0, 5, 0);
-				gbc_textPointY.anchor = GridBagConstraints.WEST;
-				gbc_textPointY.gridx = 2;
-				gbc_textPointY.gridy = 2;
-				panel.add(textPointY, gbc_textPointY);
-				textPointY.setColumns(10);
-			}
-			{
-				JButton btnNewButton = new JButton("Choose color");
+				JButton btnNewButton = new JButton("Choose Color");
+				btnNewButton.setForeground(new Color(255, 255, 255));
+				btnNewButton.setBackground(new Color(0, 0, 108));
+				btnNewButton.setFont(new Font("Georgia", Font.BOLD | Font.ITALIC, 15));
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						color = JColorChooser.showDialog(null,
 		                        "Choose a color", Color.BLACK);
 					}
 				});
+				{
+					textPointY = new JTextField();
+					textPointY.setFont(new Font("Georgia", Font.BOLD, 15));
+					textPointY.setBackground(new Color(64, 0, 64));
+					textPointY.setForeground(new Color(255, 255, 255));
+					GridBagConstraints gbc_textPointY = new GridBagConstraints();
+					gbc_textPointY.fill = GridBagConstraints.BOTH;
+					gbc_textPointY.insets = new Insets(0, 0, 5, 5);
+					gbc_textPointY.gridx = 3;
+					gbc_textPointY.gridy = 2;
+					panel.add(textPointY, gbc_textPointY);
+					textPointY.setColumns(10);
+				}
 				GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+				gbc_btnNewButton.anchor = GridBagConstraints.EAST;
+				gbc_btnNewButton.fill = GridBagConstraints.VERTICAL;
 				gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-				gbc_btnNewButton.gridx = 1;
+				gbc_btnNewButton.gridx = 2;
 				gbc_btnNewButton.gridy = 4;
 				panel.add(btnNewButton, gbc_btnNewButton);
 			}
@@ -131,6 +151,8 @@ public class DlgPoint extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.setFont(new Font("Georgia", Font.BOLD, 13));
+				okButton.setBackground(new Color(255, 255, 255));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -163,6 +185,8 @@ public class DlgPoint extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setBackground(new Color(255, 255, 255));
+				cancelButton.setFont(new Font("Georgia", Font.BOLD, 13));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
