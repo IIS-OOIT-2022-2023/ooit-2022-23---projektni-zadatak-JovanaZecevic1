@@ -90,9 +90,9 @@ public class FrmStack extends JFrame {
 
 					    dlm.add(0, circle);
 					} catch (NumberFormatException ex) {
-					    JOptionPane.showMessageDialog(null, "Invalid number input.", "Error", JOptionPane.ERROR_MESSAGE);
+					    JOptionPane.showMessageDialog(null, "INVALID NUMBER INPUT!", "Error", JOptionPane.ERROR_MESSAGE);
 					} catch (IllegalArgumentException ex) {
-					    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 					}
 					}
@@ -106,17 +106,25 @@ public class FrmStack extends JFrame {
 		btnDelete.setFont(new Font("Georgia", Font.BOLD, 14));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-				int   result = JOptionPane.showConfirmDialog(null, "Are you sure?", "YES", JOptionPane.OK_CANCEL_OPTION);
-				if (result == JOptionPane.OK_OPTION) {
-			                Circle removedCircle = dlm.get(0); // Pretpostavka: Brisanje prve stavke
-			                dlm.removeElement(removedCircle);
-			               
-					 }
-				}
-				catch(Exception eks) {
-					JOptionPane.showInternalMessageDialog(null, "List is empty", "Information", JOptionPane.INFORMATION_MESSAGE );
-				}
+				
+				if(dlm.isEmpty()==false) {
+					DlgStack dlg = new DlgStack();
+					Point p = dlm.getElementAt(0).getCenter();
+					int radius = dlm.getElementAt(0).getRadius();
+					
+					dlg.getTextAddX().setText(Integer.toString(p.getX()));
+					dlg.getTextAddY().setText(Integer.toString(p.getY()));
+					dlg.getTextRadius().setText(Integer.toString(radius));
+					
+					dlg.setVisible(true);
+					
+					dlm.removeElementAt(0);
+					
+				} else {
+					JOptionPane.showMessageDialog(null,"Stack is empty!","ERROR", JOptionPane.ERROR_MESSAGE);
+				return;
+				}	
+					
 			}
 				
 				

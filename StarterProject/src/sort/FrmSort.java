@@ -62,7 +62,7 @@ public class FrmSort extends JFrame {
 		JPanel panelCenter = new JPanel();
 		contentPane.add(panelCenter, BorderLayout.NORTH);
 		
-		JLabel lblSort = new JLabel("Sort Circles");
+		JLabel lblSort = new JLabel("SORT CIRCLES");
 		lblSort.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panelCenter.add(lblSort);
 		
