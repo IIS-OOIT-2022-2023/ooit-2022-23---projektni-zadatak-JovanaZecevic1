@@ -36,11 +36,8 @@ public class Point extends Shape {
 	
 	
 	public void setX(int xCoord) {
-		if(xCoord < 0) {
-			System.out.println("Value must be positive");
-		}else {
 			this.x = xCoord;
-		}
+		
 	}
 	
 	public int getX() {
@@ -48,11 +45,8 @@ public class Point extends Shape {
 	}
 	
 	public void setY(int yCoord) {
-		if(yCoord < 0) {
-			System.out.println("Value must be positive");
-		}else {
 			this.y = yCoord;
-		}
+		
 	}
 	
 	public int getY() {

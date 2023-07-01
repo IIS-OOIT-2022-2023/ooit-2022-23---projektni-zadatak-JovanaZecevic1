@@ -138,16 +138,20 @@ public class DlgPoint extends JDialog {
 						try {
 						int x = Integer.parseInt(textPointX.getText());
 						int y = Integer.parseInt(textPointY.getText());
+						
+						 if (x < 0 || y < 0) {
+						        throw new IllegalArgumentException("Coordinates must be positive!");
+						    } 
 						point = new Point(x,y);
 						setVisible(false);
 						isOk = true;
 						}
 						catch(NumberFormatException exc) {
 							JOptionPane.showInternalMessageDialog(null, "Please enter numbers only!", "Warning", JOptionPane.WARNING_MESSAGE);
-						}catch(IllegalArgumentException ex)
-						{
-							JOptionPane.showMessageDialog(DlgPoint.this, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+						}catch (IllegalArgumentException ex) {
+						    JOptionPane.showMessageDialog(DlgPoint.this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 						}
+						
 						
 							
 					}

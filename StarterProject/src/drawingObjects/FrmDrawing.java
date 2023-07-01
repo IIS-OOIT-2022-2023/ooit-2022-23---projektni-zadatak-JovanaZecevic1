@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import drawing.DrawingPanel;
 import geometry.Shape;
-import stack.DlgStack;
+
 import geometry.Circle;
 import geometry.Donut;
 import geometry.Line;

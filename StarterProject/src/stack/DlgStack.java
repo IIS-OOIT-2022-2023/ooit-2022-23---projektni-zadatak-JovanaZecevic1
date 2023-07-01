@@ -1,8 +1,6 @@
 package stack;
-
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -23,7 +21,6 @@ public class DlgStack extends JDialog {
 	private JTextField textAddY;
 	private JTextField textRadius;
 	
-
 	/**
 	 * Launch the application.
 	 */
@@ -36,7 +33,6 @@ public class DlgStack extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
 	/**
 	 * Create the dialog.
 	 */
@@ -65,7 +61,7 @@ public class DlgStack extends JDialog {
 			gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			{
-				JLabel lblTitleDlg = new JLabel("");
+				JLabel lblTitleDlg = new JLabel("Unesite poluprecnik i koordinate");
 				lblTitleDlg.setHorizontalAlignment(SwingConstants.CENTER);
 				GridBagConstraints gbc_lblTitleDlg = new GridBagConstraints();
 				gbc_lblTitleDlg.fill = GridBagConstraints.BOTH;
@@ -101,6 +97,7 @@ public class DlgStack extends JDialog {
 				GridBagConstraints gbc_textAddX = new GridBagConstraints();
 				gbc_textAddX.anchor = GridBagConstraints.WEST;
 				gbc_textAddX.insets = new Insets(0, 0, 5, 0);
+				gbc_textAddX.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textAddX.gridx = 3;
 				gbc_textAddX.gridy = 1;
 				panel.add(textAddX, gbc_textAddX);
@@ -119,6 +116,7 @@ public class DlgStack extends JDialog {
 				GridBagConstraints gbc_textAddY = new GridBagConstraints();
 				gbc_textAddY.anchor = GridBagConstraints.WEST;
 				gbc_textAddY.insets = new Insets(0, 0, 5, 0);
+				gbc_textAddY.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textAddY.gridx = 3;
 				gbc_textAddY.gridy = 2;
 				panel.add(textAddY, gbc_textAddY);
@@ -135,6 +133,7 @@ public class DlgStack extends JDialog {
 			{
 				textRadius = new JTextField();
 				GridBagConstraints gbc_textRadius = new GridBagConstraints();
+				gbc_textRadius.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textRadius.anchor = GridBagConstraints.WEST;
 				gbc_textRadius.gridx = 3;
 				gbc_textRadius.gridy = 3;
@@ -174,23 +173,17 @@ public class DlgStack extends JDialog {
 			}
 		}
 	}
-
 	public boolean isOk() {
 		return isOk;
 	}
-
 	public JTextField getTextAddX() {
 		return textAddX;
 	}
-
 	public JTextField getTextAddY() {
 		return textAddY;
 	}
-
 	public JTextField getTextRadius() {
 		return textRadius;
 	}
-
 	
-
 }

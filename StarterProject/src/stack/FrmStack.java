@@ -1,8 +1,6 @@
 package stack;
-
 import java.awt.EventQueue;
 import geometry.Circle;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +8,6 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -25,7 +22,6 @@ import java.awt.Font;
 public class FrmStack extends JFrame {
 	private DefaultListModel<Circle> dlm = new DefaultListModel();
 	private JPanel contentPane;
-
 	/**
 	 * Launch the application.
 	 */
@@ -41,7 +37,6 @@ public class FrmStack extends JFrame {
 			}
 		});
 	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -55,18 +50,20 @@ public class FrmStack extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelSouth = new JPanel();
 		panelSouth.setBackground(new Color(255, 255, 255));
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
-		
+
 		JList<Circle> listLst = new JList<>();
+		listLst.setBackground(new Color(255, 255, 255));
 		listLst.setBackground(new Color(246, 246, 246));
 		listLst.setForeground(new Color(0, 0, 0));
 		contentPane.add(listLst, BorderLayout.CENTER);
 		listLst.setModel(dlm);
-		
-		
+
+
+
 		
 		JButton btnAddCircle = new JButton("ADD ");
 		btnAddCircle.setForeground(new Color(255, 255, 255));
@@ -77,35 +74,30 @@ public class FrmStack extends JFrame {
 				DlgStack dlg = new DlgStack();
 				dlg.setVisible(true);
 				if(dlg.isOk() == true)
-				{   try {
-					
-					if (dlg.getTextAddX().getText().isEmpty() || dlg.getTextAddY().getText().isEmpty() || dlg.getTextRadius().getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                        
+					if(dlg.isOk() == true)
+					{   try {
+					    if (dlg.getTextAddX().getText().isEmpty() || dlg.getTextAddY().getText().isEmpty() || dlg.getTextRadius().getText().isEmpty()) {
+					        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+					        return;
+					    }
+
+					    int x = Integer.parseInt(dlg.getTextAddX().getText());
+					    int y = Integer.parseInt(dlg.getTextAddY().getText());
+					    int radius = Integer.parseInt(dlg.getTextRadius().getText());
+
+					    Circle circle = new Circle(new Point(x, y), radius);
+
+					    dlm.add(0, circle);
+					} catch (NumberFormatException ex) {
+					    JOptionPane.showMessageDialog(null, "Invalid number input.", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (IllegalArgumentException ex) {
+					    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					}
-					int x = Integer.parseInt(dlg.getTextAddX().getText());
-					int y = Integer.parseInt(dlg.getTextAddY().getText());
-					int radius = Integer.parseInt(dlg.getTextRadius().getText());
-					
-					Circle circle = new Circle(new Point(x,y), radius);
-				
-						if (circle.getRadius()<=0) {
-							JOptionPane.showMessageDialog(null, "Radius must be greater than zero!", "WARNING", JOptionPane.WARNING_MESSAGE);
-							return;
-						}
-					
-					dlm.add(0, circle);
-					
 					}
-				 catch (NumberFormatException ex) {
-		                // Obrada izuzetka: unos nije moguće pretvoriti u broj
-		                JOptionPane.showMessageDialog(null, "Nevažeći unos broja.", "Greška", JOptionPane.ERROR_MESSAGE);
-				 }
-				}
-				}
-		});
+					}
+			});
 		panelSouth.add(btnAddCircle);
+
 		
 		JButton btnDelete = new JButton("DELETE ");
 		btnDelete.setForeground(new Color(0, 64, 128));
@@ -130,6 +122,7 @@ public class FrmStack extends JFrame {
 			
 		});
 		panelSouth.add(btnDelete);
+
 		
 		JLabel lblTitle = new JLabel("CIRCLES");
 		lblTitle.setForeground(new Color(255, 255, 255));
@@ -137,10 +130,9 @@ public class FrmStack extends JFrame {
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 20));
 		contentPane.add(lblTitle, BorderLayout.NORTH);
-		
-		
+
+
 		
 	
 	}
-
 }

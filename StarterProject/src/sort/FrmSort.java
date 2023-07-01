@@ -99,35 +99,27 @@ public class FrmSort extends JFrame {
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DlgStack dlg = new DlgStack();
+				DlgSort dlg = new DlgSort();
 				dlg.setVisible(true);
-				if(dlg.isOk() == true)
+				if(dlg.isOkay() == true)
 				{   try {
-					
-					if (dlg.getTextAddX().getText().isEmpty() || dlg.getTextAddY().getText().isEmpty() || dlg.getTextRadius().getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                        
-					}
-					int x = Integer.parseInt(dlg.getTextAddX().getText());
-					int y = Integer.parseInt(dlg.getTextAddY().getText());
-					int radius = Integer.parseInt(dlg.getTextRadius().getText());
-					
-					Circle circle = new Circle(new Point(x,y), radius);
-				
-				
-						if (circle.getRadius()<=0) {
-							JOptionPane.showMessageDialog(null, "Radius must be greater than zero!", "WARNING", JOptionPane.WARNING_MESSAGE);
-							return;
-						}
-					
-					dlm.add(0, circle);
-					  
-					}
-				 catch (NumberFormatException ex) {
-		                // Obrada izuzetka: unos nije moguće pretvoriti u broj
-		                JOptionPane.showMessageDialog(null, "Nevažeći unos broja.", "Greška", JOptionPane.ERROR_MESSAGE);
-				 }
+				    if (dlg.getTextX().getText().isEmpty() || dlg.getTextY().getText().isEmpty() || dlg.getTextRadius().getText().isEmpty()) {
+				        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+				        return;
+				    }
+
+				    int x = Integer.parseInt(dlg.getTextX().getText());
+				    int y = Integer.parseInt(dlg.getTextY().getText());
+				    int radius = Integer.parseInt(dlg.getTextRadius().getText());
+
+				    Circle circle = new Circle(new Point(x, y), radius);
+
+				    dlm.add(0, circle);
+				} catch (NumberFormatException ex) {
+				    JOptionPane.showMessageDialog(null, "Invalid number input.", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (IllegalArgumentException ex) {
+				    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
 				}
 				}
 		});
