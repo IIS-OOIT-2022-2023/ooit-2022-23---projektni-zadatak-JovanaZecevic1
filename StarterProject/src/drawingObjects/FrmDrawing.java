@@ -85,30 +85,35 @@ public class FrmDrawing extends JFrame {
 		contentPane_1.add(toolBarNorth, BorderLayout.NORTH);
 		
 		JToggleButton tglBtnPoint = new JToggleButton("Point");
+		tglBtnPoint.setForeground(new Color(64, 0, 64));
 		tglBtnPoint.setBackground(new Color(255, 255, 255));
 		tglBtnPoint.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnPoint);
 		toolBarNorth.add(tglBtnPoint);
 		
 		JToggleButton tglBtnLine = new JToggleButton("Line");
+		tglBtnLine.setForeground(new Color(64, 0, 64));
 		tglBtnLine.setBackground(new Color(255, 255, 255));
 		tglBtnLine.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnLine);
 		toolBarNorth.add(tglBtnLine);
 		
 		JToggleButton tglBtnCircle = new JToggleButton("Circle");	
+		tglBtnCircle.setForeground(new Color(64, 0, 64));
 		tglBtnCircle.setBackground(new Color(255, 255, 255));
 		tglBtnCircle.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnCircle);
 		toolBarNorth.add(tglBtnCircle);
 		
 		JToggleButton tglBtnRect = new JToggleButton("Rectangle");
+		tglBtnRect.setForeground(new Color(64, 0, 64));
 		tglBtnRect.setBackground(new Color(255, 255, 255));
 		tglBtnRect.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnRect);
 		toolBarNorth.add(tglBtnRect);
 		
 		JToggleButton tglBtnDonut = new JToggleButton("Donut");
+		tglBtnDonut.setForeground(new Color(64, 0, 64));
 		tglBtnDonut.setBackground(new Color(255, 255, 255));
 		tglBtnDonut.setFont(new Font("Georgia", Font.BOLD, 15));
 		buttonGroup1.add(tglBtnDonut);
@@ -122,16 +127,16 @@ public class FrmDrawing extends JFrame {
 		contentPane_1.add(toolBarSouth, BorderLayout.SOUTH);
 		
 		JToggleButton tglbtnDraw = new JToggleButton("Draw");
-		tglbtnDraw.setBackground(new Color(0, 98, 112));
-		tglbtnDraw.setForeground(new Color(255, 255, 255));
-		tglbtnDraw.setFont(new Font("Georgia", Font.BOLD, 16));
+		tglbtnDraw.setBackground(new Color(255, 230, 255));
+		tglbtnDraw.setForeground(new Color(0, 0, 0));
+		tglbtnDraw.setFont(new Font("Georgia", Font.BOLD | Font.ITALIC, 16));
 		toolBarSouth.add(tglbtnDraw);
 		buttonGroup2.add(tglbtnDraw);
 		
 		JToggleButton tglbtnSelected = new JToggleButton("Select");
-		tglbtnSelected.setForeground(new Color(20, 98, 112));
-		tglbtnSelected.setBackground(new Color(255, 255, 255));
-		tglbtnSelected.setFont(new Font("Georgia", Font.BOLD, 15));
+		tglbtnSelected.setForeground(new Color(0, 0, 0));
+		tglbtnSelected.setBackground(new Color(255, 230, 255));
+		tglbtnSelected.setFont(new Font("Georgia", Font.BOLD | Font.ITALIC, 15));
 		tglbtnSelected.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonGroup1.clearSelection();
@@ -141,9 +146,9 @@ public class FrmDrawing extends JFrame {
 		buttonGroup2.add(tglbtnSelected);
 		
 		JButton btnModify = new JButton("Modify");
-		btnModify.setForeground(new Color(255, 255, 255));
-		btnModify.setBackground(new Color(0, 98, 112));
-		btnModify.setFont(new Font("Georgia", Font.BOLD, 15));
+		btnModify.setForeground(new Color(0, 0, 0));
+		btnModify.setBackground(new Color(255, 230, 255));
+		btnModify.setFont(new Font("Georgia", Font.BOLD | Font.ITALIC, 15));
 		btnModify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelDrawing.modify();
@@ -152,9 +157,9 @@ public class FrmDrawing extends JFrame {
 		toolBarSouth.add(btnModify);
 		
 		JButton btnDelete = new JButton("Delete");
-		btnDelete.setForeground(new Color(0, 98, 112));
-		btnDelete.setBackground(new Color(255,255,255));
-		btnDelete.setFont(new Font("Georgia", Font.BOLD, 15));
+		btnDelete.setForeground(new Color(0, 0, 0));
+		btnDelete.setBackground(new Color(255, 230, 255));
+		btnDelete.setFont(new Font("Georgia", Font.BOLD | Font.ITALIC, 15));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelDrawing.delete();
