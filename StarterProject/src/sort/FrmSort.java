@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class FrmSort extends JFrame {
 
@@ -54,49 +55,62 @@ public class FrmSort extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(64, 0, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelCenter = new JPanel();
+		panelCenter.setBackground(new Color(64, 0, 128));
 		contentPane.add(panelCenter, BorderLayout.NORTH);
 		
 		JLabel lblSort = new JLabel("SORT CIRCLES");
-		lblSort.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblSort.setForeground(new Color(255, 255, 255));
+		lblSort.setFont(new Font("Georgia", Font.BOLD, 20));
 		panelCenter.add(lblSort);
 		
 		JList<Circle> listCirclesSort = new JList<>();
+		listCirclesSort.setFont(new Font("Georgia", Font.BOLD, 12));
 		contentPane.add(listCirclesSort, BorderLayout.CENTER);
 		listCirclesSort.setModel(dlm);
 		
 		JPanel panelEast = new JPanel();
+		panelEast.setBackground(new Color(64, 0, 128));
 		contentPane.add(panelEast, BorderLayout.EAST);
 		
 		JButton btnSort = new JButton("SORT");
+		btnSort.setBackground(new Color(255, 255, 255));
 		btnSort.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(dlm.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "List is empty! ", "Error", JOptionPane.WARNING_MESSAGE);
+				} else {
 				ArrayList<Circle> listCircles = Collections.list(dlm.elements());
                 listCircles.sort(new Comparator<Circle>() {
                 	@Override
                     public int compare(Circle c1, Circle c2) {
                         return Double.compare(c1.getRadius() * c1.getRadius() * Math.PI, c2.getRadius() * c2.getRadius() * Math.PI);
                     }
+                
                 });
                 dlm.removeAllElements();
                 for (Circle circle : listCircles) {
                     dlm.addElement(circle);
                 }
-			}
-		});
-		btnSort.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				}}}
+		);
+		btnSort.setFont(new Font("Georgia", Font.BOLD, 17));
 		btnSort.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelEast.add(btnSort);
 		
 		JPanel panelWest = new JPanel();
+		panelWest.setBackground(new Color(64, 0, 128));
 		contentPane.add(panelWest, BorderLayout.WEST);
 		
 		JButton btnAdd = new JButton("ADD");
+		btnAdd.setForeground(new Color(255, 255, 255));
+		btnAdd.setBackground(new Color(0, 198, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DlgSort dlg = new DlgSort();
@@ -104,7 +118,7 @@ public class FrmSort extends JFrame {
 				if(dlg.isOkay() == true)
 				{   try {
 				    if (dlg.getTextX().getText().isEmpty() || dlg.getTextY().getText().isEmpty() || dlg.getTextRadius().getText().isEmpty()) {
-				        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+				        JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED!", "ERROR", JOptionPane.ERROR_MESSAGE);
 				        return;
 				    }
 
@@ -124,7 +138,7 @@ public class FrmSort extends JFrame {
 				}
 		});
 			
-		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnAdd.setFont(new Font("Georgia", Font.BOLD, 17));
 		panelWest.add(btnAdd);
 	}
 
