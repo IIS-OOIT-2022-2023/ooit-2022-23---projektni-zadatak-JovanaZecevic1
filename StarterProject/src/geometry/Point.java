@@ -36,8 +36,11 @@ public class Point extends Shape {
 	
 	
 	public void setX(int xCoord) {
+		if(xCoord > 0) {
 			this.x = xCoord;
-		
+		}else {
+			throw new IllegalArgumentException("Must be positive!");
+		}
 	}
 	
 	public int getX() {
@@ -45,8 +48,11 @@ public class Point extends Shape {
 	}
 	
 	public void setY(int yCoord) {
+		if(yCoord > 0) {
 			this.y = yCoord;
-		
+		}else {
+			throw new IllegalArgumentException("Must be positive!");
+		}
 	}
 	
 	public int getY() {

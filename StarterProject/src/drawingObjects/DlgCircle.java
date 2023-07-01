@@ -187,7 +187,7 @@ public class DlgCircle extends JDialog {
 							JOptionPane.showMessageDialog(null, "Enter number only!", "Error", JOptionPane.ERROR_MESSAGE);
 						}catch(IllegalArgumentException ex)
 						{
-							JOptionPane.showMessageDialog(DlgCircle.this, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(DlgCircle.this, "Must be positive!", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
