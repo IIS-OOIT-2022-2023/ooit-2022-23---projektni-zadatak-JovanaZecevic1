@@ -213,14 +213,6 @@ public class DlgStack extends JDialog {
 	public JTextField getTextRadius() {
 		return textRadius;
 	}
-	public void setTextAddX(JTextField textAddX) {
-		this.textAddX = textAddX;
-	}
-	public void setTextAddY(JTextField textAddY) {
-		this.textAddY = textAddY;
-	}
-	public void setTextRadius(JTextField textRadius) {
-		this.textRadius = textRadius;
-	}
+	
 	
 }

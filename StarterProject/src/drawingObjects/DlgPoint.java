@@ -158,6 +158,11 @@ public class DlgPoint extends JDialog {
 						
 						
 						try {
+							
+							if (textPointX.getText().isEmpty() || textPointY.getText().isEmpty()) {
+						        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+						        return;
+						    }
 						int x = Integer.parseInt(textPointX.getText());
 						int y = Integer.parseInt(textPointY.getText());
 						

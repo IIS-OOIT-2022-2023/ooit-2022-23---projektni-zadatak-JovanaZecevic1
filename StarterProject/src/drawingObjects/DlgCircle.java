@@ -200,6 +200,10 @@ public class DlgCircle extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
+							if (textFieldXCenter.getText().isEmpty() || textFieldYCenter.getText().isEmpty() || textFieldRadius.getText().isEmpty()) {
+						        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+						        return;
+						    }
 							int x = Integer.parseInt(textFieldXCenter.getText());
 							int y = Integer.parseInt(textFieldYCenter.getText());
 							int radius = Integer.parseInt(textFieldRadius.getText());

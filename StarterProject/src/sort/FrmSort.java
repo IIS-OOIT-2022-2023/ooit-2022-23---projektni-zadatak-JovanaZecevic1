@@ -55,14 +55,14 @@ public class FrmSort extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(64, 0, 128));
+		contentPane.setBackground(new Color(64, 0, 64));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelCenter = new JPanel();
-		panelCenter.setBackground(new Color(64, 0, 128));
+		panelCenter.setBackground(new Color(64, 0, 64));
 		contentPane.add(panelCenter, BorderLayout.NORTH);
 		
 		JLabel lblSort = new JLabel("SORT CIRCLES");
@@ -76,7 +76,7 @@ public class FrmSort extends JFrame {
 		listCirclesSort.setModel(dlm);
 		
 		JPanel panelEast = new JPanel();
-		panelEast.setBackground(new Color(64, 0, 128));
+		panelEast.setBackground(new Color(64, 0, 64));
 		contentPane.add(panelEast, BorderLayout.EAST);
 		
 		JButton btnSort = new JButton("SORT");
@@ -105,7 +105,7 @@ public class FrmSort extends JFrame {
 		panelEast.add(btnSort);
 		
 		JPanel panelWest = new JPanel();
-		panelWest.setBackground(new Color(64, 0, 128));
+		panelWest.setBackground(new Color(64, 0, 64));
 		contentPane.add(panelWest, BorderLayout.WEST);
 		
 		JButton btnAdd = new JButton("ADD");
@@ -118,7 +118,7 @@ public class FrmSort extends JFrame {
 				if(dlg.isOkay() == true)
 				{   try {
 				    if (dlg.getTextX().getText().isEmpty() || dlg.getTextY().getText().isEmpty() || dlg.getTextRadius().getText().isEmpty()) {
-				        JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED!", "ERROR", JOptionPane.ERROR_MESSAGE);
+				        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
 				        return;
 				    }
 

@@ -138,6 +138,7 @@ public class DlgDonut extends JDialog {
 			}
 			{
 				textFieldRadius = new JTextField();
+				textFieldRadius.setForeground(new Color(255, 255, 255));
 				textFieldRadius.setBackground(new Color(64, 0, 64));
 				textFieldRadius.setFont(new Font("Georgia", Font.BOLD, 15));
 				GridBagConstraints gbc_textFieldRadius = new GridBagConstraints();
@@ -171,6 +172,7 @@ public class DlgDonut extends JDialog {
 				});
 				{
 					textFieldInner = new JTextField();
+					textFieldInner.setForeground(new Color(255, 255, 255));
 					textFieldInner.setBackground(new Color(64, 0, 64));
 					textFieldInner.setFont(new Font("Georgia", Font.BOLD, 15));
 					GridBagConstraints gbc_textFieldInner = new GridBagConstraints();
@@ -218,6 +220,10 @@ public class DlgDonut extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
+							if (textFieldXcenter.getText().isEmpty() || textFieldYcenter.getText().isEmpty() || textFieldRadius.getText().isEmpty() || textFieldInner.getText().isEmpty()) {
+						        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+						        return;
+						    }
 						     int x = Integer.parseInt(textFieldXcenter.getText());
 						     int y = Integer.parseInt(textFieldYcenter.getText());
 						     int radius = Integer.parseInt(textFieldRadius.getText());
@@ -230,7 +236,7 @@ public class DlgDonut extends JDialog {
 							JOptionPane.showMessageDialog(null, "Enter number only!", "Error", JOptionPane.ERROR_MESSAGE);
 						}catch(IllegalArgumentException ex)
 						{
-							JOptionPane.showMessageDialog(DlgDonut.this, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});

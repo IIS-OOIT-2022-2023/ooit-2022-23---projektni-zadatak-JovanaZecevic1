@@ -90,9 +90,9 @@ public class FrmStack extends JFrame {
 
 					    dlm.add(0, circle);
 					} catch (NumberFormatException ex) {
-					    JOptionPane.showMessageDialog(null, "INVALID NUMBER INPUT!", "Error", JOptionPane.ERROR_MESSAGE);
+					    JOptionPane.showMessageDialog(null, "Invalid number input.", "Error", JOptionPane.ERROR_MESSAGE);
 					} catch (IllegalArgumentException ex) {
-					    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+					    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					}
 					}
@@ -121,7 +121,7 @@ public class FrmStack extends JFrame {
 					dlm.removeElementAt(0);
 					
 				} else {
-					JOptionPane.showMessageDialog(null,"Stack is empty!","ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,"Stack is empty!","Error", JOptionPane.ERROR_MESSAGE);
 				return;
 				}	
 					

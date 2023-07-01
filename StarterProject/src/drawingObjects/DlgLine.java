@@ -201,6 +201,11 @@ public class DlgLine extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						try {
 							
+							if (textFieldX1.getText().isEmpty() || textFieldY1.getText().isEmpty() || textFieldX2.getText().isEmpty()|| textFieldY2.getText().isEmpty()) {
+						        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+						        return;
+						    }
+							
 							int x = Integer.parseInt(textFieldX1.getText());
 							int y = Integer.parseInt(textFieldY1.getText());
 							int x2 = Integer.parseInt(textFieldX2.getText());

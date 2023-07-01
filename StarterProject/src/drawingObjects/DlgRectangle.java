@@ -226,6 +226,11 @@ public class DlgRectangle extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
+							if (textFieldX.getText().isEmpty() || textFieldY.getText().isEmpty() || textFieldWidth.getText().isEmpty()|| textFieldHeight.getText().isEmpty()) {
+						        JOptionPane.showMessageDialog(null, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+						        return;
+						    }
+							
 							int x = Integer.parseInt(textFieldX.getText());
 							int y = Integer.parseInt(textFieldY.getText());
 							int width = Integer.parseInt(textFieldWidth.getText());
