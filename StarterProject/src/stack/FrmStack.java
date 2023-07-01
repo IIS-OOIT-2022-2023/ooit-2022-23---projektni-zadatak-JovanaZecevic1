@@ -19,6 +19,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import geometry.Point;
 import java.awt.Color;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class FrmStack extends JFrame {
 	private DefaultListModel<Circle> dlm = new DefaultListModel();
@@ -48,23 +50,28 @@ public class FrmStack extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(2, 50, 70));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelSouth = new JPanel();
+		panelSouth.setBackground(new Color(255, 255, 255));
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
 		
 		JList<Circle> listLst = new JList<>();
-		listLst.setBackground(new Color(255, 255, 255));
+		listLst.setBackground(new Color(246, 246, 246));
 		listLst.setForeground(new Color(0, 0, 0));
 		contentPane.add(listLst, BorderLayout.CENTER);
 		listLst.setModel(dlm);
 		
 		
 		
-		JButton btnAddCircle = new JButton("DODATI KRUG");
+		JButton btnAddCircle = new JButton("ADD ");
+		btnAddCircle.setForeground(new Color(255, 255, 255));
+		btnAddCircle.setBackground(new Color(2, 50, 70));
+		btnAddCircle.setFont(new Font("Georgia", Font.PLAIN, 10));
 		btnAddCircle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DlgStack dlg = new DlgStack();
@@ -83,7 +90,6 @@ public class FrmStack extends JFrame {
 					
 					Circle circle = new Circle(new Point(x,y), radius);
 				
-				
 						if (circle.getRadius()<=0) {
 							JOptionPane.showMessageDialog(null, "Radius must be greater than zero!", "WARNING", JOptionPane.WARNING_MESSAGE);
 							return;
@@ -101,7 +107,10 @@ public class FrmStack extends JFrame {
 		});
 		panelSouth.add(btnAddCircle);
 		
-		JButton btnDelete = new JButton("OBRISATI");
+		JButton btnDelete = new JButton("DELETE ");
+		btnDelete.setForeground(new Color(0, 64, 128));
+		btnDelete.setBackground(new Color(232, 235, 228));
+		btnDelete.setFont(new Font("Georgia", Font.PLAIN, 10));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -122,7 +131,11 @@ public class FrmStack extends JFrame {
 		});
 		panelSouth.add(btnDelete);
 		
-		JLabel lblTitle = new JLabel("New label");
+		JLabel lblTitle = new JLabel("CIRCLES");
+		lblTitle.setForeground(new Color(255, 255, 255));
+		lblTitle.setBackground(new Color(80, 86, 104));
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 20));
 		contentPane.add(lblTitle, BorderLayout.NORTH);
 		
 		
