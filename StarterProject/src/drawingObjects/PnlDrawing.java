@@ -20,26 +20,46 @@ public class PnlDrawing extends JPanel {
 	private ArrayList <Shape> shapes;
 	private FrmDrawing frame;
 	private Shape selected;
-	private Point startPoint;
+	
 
 	/**
 	 * Create the panel.
 	 */
 	
 	public void selected(int x, int y) {
-		Shape last = null;
-		for(Shape shape : shapes){
-			if(shape.contains(x, y)) {
-				last=shape;
-			}
-			shape.setSelected(false);
-		}
-		if(last != null)
-		{
-			last.setSelected(true);
-		}
-		repaint();
+	    Shape lastSelected = selected;
+	    if (lastSelected != null && !lastSelected.contains(x, y)) {
+	        lastSelected.setSelected(false);
+	        selected = null;
+	    }
+	    boolean clickedOnShape = false;
+	    for (Shape shape : shapes) {
+	        if (shape.contains(x, y)) {
+	            if (shape == lastSelected) {
+	               
+	                shape.setSelected(false);
+	                selected = null;
+	            } else {
+	                shape.setSelected(true);
+	                selected = shape;
+	            }
+	            clickedOnShape = true;
+	        } else {
+	            shape.setSelected(false);
+	        }
+	    }
+	    if (clickedOnShape && selected != null) {
+	        for (Shape shape : shapes) {
+	            if (shape != selected) {
+	                shape.setSelected(false);
+	            }
+	        }
+	    }
+
+	    repaint();
 	}
+
+
 	public void delete() {
 		Iterator<Shape> it = shapes.iterator();
 		boolean selectedShape=false;

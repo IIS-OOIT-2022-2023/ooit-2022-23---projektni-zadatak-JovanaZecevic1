@@ -235,7 +235,7 @@ public class DlgRectangle extends JDialog {
 							int y = Integer.parseInt(textFieldY.getText());
 							int width = Integer.parseInt(textFieldWidth.getText());
 							int height = Integer.parseInt(textFieldHeight.getText());
-							rectangle = new Rectangle(new Point(x,y), width, height);
+							rectangle = new Rectangle(new Point(x,y), height, width);
 							setVisible(false);
 							isOk=true;
 							

@@ -14,7 +14,7 @@ public class Donut extends Circle {
 	public Donut(Point center, int radius, int innerRadius) {
 		super(center, radius);
 		if(innerRadius>radius || innerRadius<0) {
-			throw new IllegalArgumentException("Inner radius must be greater than zero and less than radius");
+			throw new IllegalArgumentException("Inner radius must be greater than zero and less than radius!");
 		}
 		else
 			this.innerRadius=innerRadius;
