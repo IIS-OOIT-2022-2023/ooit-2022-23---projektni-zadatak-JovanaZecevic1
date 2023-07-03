@@ -188,8 +188,6 @@ public class PnlDrawing extends JPanel {
 		repaint();
 	}
 
-
-
 		/**
 		 * Create the panel.
 		 */

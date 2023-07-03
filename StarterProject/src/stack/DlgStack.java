@@ -39,6 +39,7 @@ public class DlgStack extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgStack() {
+		
 		getContentPane().setBackground(new Color(255, 255, 255));
 		setBounds(100, 100, 450, 300);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -48,6 +49,7 @@ public class DlgStack extends JDialog {
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		setModal(true);
+		
 		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(2, 50, 70));
@@ -213,6 +215,4 @@ public class DlgStack extends JDialog {
 	public JTextField getTextRadius() {
 		return textRadius;
 	}
-	
-	
 }
